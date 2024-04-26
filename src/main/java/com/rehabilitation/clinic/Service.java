@@ -3,14 +3,17 @@ package com.rehabilitation.clinic;
 import jakarta.persistence.*;
 import java.time.LocalTime;
 
-@Entity
+//@Entity
 public class Service {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int serviceId;
 
+    //@Column(length = 30, nullable = false)
     private String name;
+    //@Column(nullable = false)
     private float price;
+    //@Column(nullable = false)
     private LocalTime time;
 
     public String getName() {

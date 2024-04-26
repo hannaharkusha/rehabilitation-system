@@ -5,10 +5,10 @@ import jakarta.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-@Entity
+//@Entity
 public class Visit {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int visitId;
     private LocalDate date;
     private LocalTime startTime;

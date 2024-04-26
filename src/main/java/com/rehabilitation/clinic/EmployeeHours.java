@@ -4,8 +4,8 @@ import jakarta.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 public class EmployeeHours {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int EmployeeHoursId;
 
     private int employeeId;
