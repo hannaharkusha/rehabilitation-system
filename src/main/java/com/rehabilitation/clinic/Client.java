@@ -1,15 +1,21 @@
 package com.rehabilitation.clinic;
 
-public class Client extends User
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+
+@Entity
+public class Client extends ClinicUser
 {
+    @Column(length = 11)
     private String pesel;
     private String phoneNr;
     private String email;
     private String address;
 
-    public Client(String name, String surname, String position)
+    public Client(){}
+    public Client(String name, String surname, String position, String password)
     {
-        super(name, surname, position);
+        super(name, surname, position, password);
     }
 
     public String getPesel()

@@ -1,10 +1,13 @@
 package com.rehabilitation.clinic;
 
-public class Physiotherapist extends User
-{
+import jakarta.persistence.Entity;
 
-    public Physiotherapist(String name, String surname, String position)
+@Entity
+public class Physiotherapist extends ClinicUser
+{
+    public Physiotherapist(){}
+    public Physiotherapist(String name, String surname, String position, String password)
     {
-        super(name, surname, position);
+        super(name, surname, position, password);
     }
 }

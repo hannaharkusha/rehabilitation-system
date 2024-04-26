@@ -1,19 +1,31 @@
 package com.rehabilitation.clinic;
 
-public abstract class User
+import jakarta.persistence.*;
+
+@MappedSuperclass
+public abstract class ClinicUser
 {
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int userId;
-    private String name;
-    private String surname;
-    private String position;
-    //private Account account;
 
-    public User(String name, String surname, String position)
+    @Column(length = 25)
+    private String name;
+    @Column(length = 30)
+    private String surname;
+    @Column(length = 15)
+    private String position;
+    @Column(length = 20, nullable = false)
+    private String password;
+
+    public ClinicUser(){}
+
+    public ClinicUser(String name, String surname, String position, String password)
     {
         this.name = name;
         this.surname = surname;
         this.position = position;
+        this.password = password;
     }
 
     public int getUserIdId()

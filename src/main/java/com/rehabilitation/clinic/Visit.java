@@ -5,17 +5,26 @@ import jakarta.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-//@Entity
+@Entity
 public class Visit {
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int visitId;
     private LocalDate date;
     private LocalTime startTime;
     private LocalTime endTime;
-    private int employeeId;
-    private int serviceId;
-    private int clientId;
+
+    @ManyToOne
+    @JoinColumn(name = "physiotherapist_id", referencedColumnName = "userId")
+    private Physiotherapist physiotherapist;
+
+    @ManyToOne
+    @JoinColumn(name = "service_id", referencedColumnName = "serviceId")
+    private Service service;
+
+    @ManyToOne
+    @JoinColumn(name = "client_id", referencedColumnName = "userId")
+    private Client client;
 
     private enum Status {
         CANCELLED, PENDING, COMPLETED, INPROGRESS, FREE, BOOKED
@@ -93,48 +102,17 @@ public class Visit {
         this.endTime = endTime;
     }
 
-    public int getEmployeeId() {
-        return employeeId;
-    }
-
-    public void setEmployeeId(int employeeId) {
-        this.employeeId = employeeId;
-    }
-
-    public int getServiceId() {
-        return serviceId;
-    }
-
-    public void setServiceId(int serviceId) {
-        this.serviceId = serviceId;
-    }
-
-    public int getClientId() {
-        return clientId;
-    }
-
-    public void setClientId(int clientId) {
-        this.clientId = clientId;
-    }
 
     public Visit() {}
 
-    public Visit(LocalDate date, LocalTime startTime, LocalTime endTime, int employeeId, int serviceId, int clientId) {
+    public Visit(LocalDate date, LocalTime startTime, LocalTime endTime, Physiotherapist physiotherapist, Service service) {
         this.date = date;
         this.startTime = startTime;
         this.endTime = endTime;
-        this.employeeId = employeeId;
-        this.serviceId = serviceId;
-        this.clientId = clientId;
-        this.status = Status.BOOKED;
-    }
-
-    public Visit(LocalDate date, LocalTime startTime, LocalTime endTime, int employeeId, int serviceId) {
-        this.date = date;
-        this.startTime = startTime;
-        this.endTime = endTime;
-        this.employeeId = employeeId;
-        this.serviceId = serviceId;
+        this.physiotherapist = physiotherapist;
+        this.service = service;
         this.status = Status.FREE;
     }
+
+
 }

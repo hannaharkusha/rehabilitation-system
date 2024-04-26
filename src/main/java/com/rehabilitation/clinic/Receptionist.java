@@ -1,10 +1,14 @@
 package com.rehabilitation.clinic;
 
-public class Receptionist extends User
+import jakarta.persistence.Entity;
+
+@Entity
+public class Receptionist extends ClinicUser
 {
 
-    public Receptionist(String name, String surname, String position)
+    public Receptionist(){}
+    public Receptionist(String name, String surname, String position, String password)
     {
-        super(name, surname, position);
+        super(name, surname, position, password);
     }
 }

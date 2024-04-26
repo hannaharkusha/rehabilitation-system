@@ -3,22 +3,28 @@ package com.rehabilitation.clinic;
 import jakarta.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
+
+@Entity
 public class EmployeeHours {
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int EmployeeHoursId;
 
-    private int employeeId;
+    @ManyToOne
+    @JoinColumn(name = "employee_id", referencedColumnName = "userId")
+    private Physiotherapist physiotherapist;
     private LocalDate dateWork;
     private LocalTime startTimeWork;
     private LocalTime endTimeWork;
 
-    public int getEmployeeId() {
-        return employeeId;
+    public Physiotherapist getPhysiotherapist()
+    {
+        return physiotherapist;
     }
 
-    public void setEmployeeId(int employeeId) {
-        this.employeeId = employeeId;
+    public void setPhysiotherapist(Physiotherapist physiotherapist)
+    {
+        this.physiotherapist = physiotherapist;
     }
 
     public LocalDate getDateWork() {
@@ -45,8 +51,9 @@ public class EmployeeHours {
         this.endTimeWork = endTimeWork;
     }
 
-    public EmployeeHours(int employeeId, LocalDate dateWork, LocalTime startTimeWork, LocalTime endTimeWork) {
-        this.employeeId = employeeId;
+    public EmployeeHours(){}
+    public EmployeeHours(Physiotherapist physiotherapist, LocalDate dateWork, LocalTime startTimeWork, LocalTime endTimeWork) {
+        this.physiotherapist = physiotherapist;
         this.dateWork = dateWork;
         this.startTimeWork = startTimeWork;
         this.endTimeWork = endTimeWork;

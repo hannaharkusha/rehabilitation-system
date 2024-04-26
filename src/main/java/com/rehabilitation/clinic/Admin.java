@@ -1,10 +1,14 @@
 package com.rehabilitation.clinic;
 
-public class Admin extends User
+import jakarta.persistence.Entity;
+
+@Entity
+public class Admin extends ClinicUser
 {
-    public Admin(String name, String surname, String position)
+    public Admin(){}
+    public Admin(String name, String surname, String position, String password)
     {
-        super(name, surname, position);
+        super(name, surname, position, password);
     }
 
 }
