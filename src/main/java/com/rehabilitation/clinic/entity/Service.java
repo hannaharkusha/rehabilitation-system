@@ -1,4 +1,4 @@
-package com.rehabilitation.clinic;
+package com.rehabilitation.clinic.entity;
 
 import jakarta.persistence.*;
 import java.time.LocalTime;

@@ -1,4 +1,4 @@
-package com.rehabilitation.clinic;
+package com.rehabilitation.clinic.entity;
 
 import jakarta.persistence.*;
 
@@ -11,6 +11,7 @@ public abstract class ClinicUser
 
     @Column(length = 25)
     private String name;
+
     @Column(length = 30)
     private String surname;
     @Column(length = 15)
@@ -28,7 +29,7 @@ public abstract class ClinicUser
         this.password = password;
     }
 
-    public int getUserIdId()
+    public int getUserId()
     {
         return userId;
     }
@@ -68,5 +69,11 @@ public abstract class ClinicUser
         this.position = position;
     }
 
+    public String getPassword() {
+        return password;
+    }
 
+    public void setPassword(String password) {
+        this.password = password;
+    }
 }
