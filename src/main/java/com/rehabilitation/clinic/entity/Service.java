@@ -40,6 +40,14 @@ public class Service {
         this.time = time;
     }
 
+    public int getServiceId() {
+        return serviceId;
+    }
+
+    public void setServiceId(int serviceId) {
+        this.serviceId = serviceId;
+    }
+
     public Service() {}
 
     public Service(String name, float price, LocalTime time) {
