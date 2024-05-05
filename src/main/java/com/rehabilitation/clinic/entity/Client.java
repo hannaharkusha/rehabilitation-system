@@ -13,9 +13,9 @@ public class Client extends ClinicUser
     private String address;
 
     public Client(){}
-    public Client(String name, String surname, String position, String password)
+    public Client(String name, String surname, String password)
     {
-        super(name, surname, position, password);
+        super(name, surname, password);
     }
 
     public String getPesel()

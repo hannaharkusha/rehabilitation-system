@@ -14,7 +14,7 @@ public class Service {
     @Column(nullable = false)
     private float price;
     @Column(nullable = false)
-    private LocalTime time;
+    private int duration;
 
     public String getName() {
         return name;
@@ -32,12 +32,12 @@ public class Service {
         this.price = price;
     }
 
-    public LocalTime getTime() {
-        return time;
+    public int getDuration() {
+        return duration;
     }
 
-    public void setTime(LocalTime time) {
-        this.time = time;
+    public void setDuration(LocalTime time) {
+        this.duration = duration;
     }
 
     public int getServiceId() {
@@ -50,9 +50,9 @@ public class Service {
 
     public Service() {}
 
-    public Service(String name, float price, LocalTime time) {
+    public Service(String name, float price, int duration) {
         this.name = name;
         this.price = price;
-        this.time = time;
+        this.duration = duration;
     }
 }

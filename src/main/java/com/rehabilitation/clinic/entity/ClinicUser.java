@@ -14,18 +14,16 @@ public abstract class ClinicUser
 
     @Column(length = 30)
     private String surname;
-    @Column(length = 15)
-    private String position;
+
     @Column(length = 20, nullable = false)
     private String password;
 
     public ClinicUser(){}
 
-    public ClinicUser(String name, String surname, String position, String password)
+    public ClinicUser(String name, String surname, String password)
     {
         this.name = name;
         this.surname = surname;
-        this.position = position;
         this.password = password;
     }
 
@@ -57,16 +55,6 @@ public abstract class ClinicUser
     public void setSurname(String surname)
     {
         this.surname = surname;
-    }
-
-    public String getPosition()
-    {
-        return position;
-    }
-
-    public void setPosition(String position)
-    {
-        this.position = position;
     }
 
     public String getPassword() {

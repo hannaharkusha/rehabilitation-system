@@ -12,19 +12,19 @@ public class EmployeeHours {
 
     @ManyToOne
     @JoinColumn(name = "employee_id", referencedColumnName = "userId")
-    private Physiotherapist physiotherapist;
+    private Employee employee;
     private LocalDate dateWork;
     private LocalTime startTimeWork;
     private LocalTime endTimeWork;
 
-    public Physiotherapist getPhysiotherapist()
+    public Employee getEmployee()
     {
-        return physiotherapist;
+        return employee;
     }
 
-    public void setPhysiotherapist(Physiotherapist physiotherapist)
+    public void setEmployee(Employee employee)
     {
-        this.physiotherapist = physiotherapist;
+        this.employee = employee;
     }
 
     public LocalDate getDateWork() {
@@ -52,8 +52,8 @@ public class EmployeeHours {
     }
 
     public EmployeeHours(){}
-    public EmployeeHours(Physiotherapist physiotherapist, LocalDate dateWork, LocalTime startTimeWork, LocalTime endTimeWork) {
-        this.physiotherapist = physiotherapist;
+    public EmployeeHours(Employee employee, LocalDate dateWork, LocalTime startTimeWork, LocalTime endTimeWork) {
+        this.employee = employee;
         this.dateWork = dateWork;
         this.startTimeWork = startTimeWork;
         this.endTimeWork = endTimeWork;

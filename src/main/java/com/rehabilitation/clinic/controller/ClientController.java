@@ -31,8 +31,8 @@ public class ClientController {
     }
 
     @GetMapping("/add")
-    public void addClient(String name, String surname, String position, String password) {
-        clientService.addClient(name, surname, position, password);
+    public void addClient(String name, String surname, String password) {
+        clientService.addClient(name, surname, password);
     }
 
     @GetMapping("/delete")

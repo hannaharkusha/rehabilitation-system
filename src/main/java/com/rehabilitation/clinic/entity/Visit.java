@@ -16,7 +16,7 @@ public class Visit {
 
     @ManyToOne
     @JoinColumn(name = "physiotherapist_id", referencedColumnName = "userId")
-    private Physiotherapist physiotherapist;
+    private Employee employee;
 
     @ManyToOne
     @JoinColumn(name = "service_id", referencedColumnName = "serviceId")
@@ -105,11 +105,11 @@ public class Visit {
 
     public Visit() {}
 
-    public Visit(LocalDate date, LocalTime startTime, LocalTime endTime, Physiotherapist physiotherapist, Service service) {
+    public Visit(LocalDate date, LocalTime startTime, LocalTime endTime, Employee employee, Service service) {
         this.date = date;
         this.startTime = startTime;
         this.endTime = endTime;
-        this.physiotherapist = physiotherapist;
+        this.employee = employee;
         this.service = service;
         this.status = Status.FREE;
     }

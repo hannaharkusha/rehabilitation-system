@@ -35,9 +35,9 @@ public class ServiceService {
         }
     }
 
-    public void addService(String name, float price, LocalTime duration) {
+    public void addService(String name, float price, int duration) {
         try {
-            if(name == null || price < 0.0 || duration == null) {
+            if(name == null || price < 0.0 || duration == 0) {
                 throw new IllegalArgumentException("ServiceService: incorrect data");
             }
             Service service = new Service(name, price, duration);
