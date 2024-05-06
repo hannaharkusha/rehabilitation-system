@@ -17,6 +17,14 @@ public class EmployeeHours {
     private LocalTime startTimeWork;
     private LocalTime endTimeWork;
 
+    public int getEmployeeHoursId() {
+        return EmployeeHoursId;
+    }
+
+    public void setEmployeeHoursId(int employeeHoursId) {
+        EmployeeHoursId = employeeHoursId;
+    }
+
     public Employee getEmployee()
     {
         return employee;
