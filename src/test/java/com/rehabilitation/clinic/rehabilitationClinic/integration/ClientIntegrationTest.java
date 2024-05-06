@@ -24,16 +24,11 @@ public class ClientIntegrationTest {
     //integration tests with real database
     @Test
     public void testCRUDOperationsWithRealDatabase() {
-        Client client = new Client("Jan", "Kowalski", "Client", "password");
+        Client client = new Client("Jan", "Kowalski", "password");
         clientRepository.save(client);
 
         Optional<Client> retrievedClient = clientRepository.findById(client.getUserId());
         assertEquals(client.getName(), retrievedClient.get().getName());
-
-        client.setPosition("Receptionist");
-        clientRepository.save(client);
-        Optional<Client> updatedClient = clientRepository.findById(client.getUserId());
-        assertEquals(client.getPosition(), updatedClient.get().getPosition());
 
         clientRepository.delete(client);
         Optional<Client> deletedClient = clientRepository.findById(client.getUserId());

@@ -5,7 +5,6 @@ import com.rehabilitation.clinic.repository.ServiceRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.time.LocalTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -43,7 +42,7 @@ public class ServiceService {
             Service service = new Service(name, price, duration);
             serviceRepository.save(service);
         } catch (Exception e) {
-            System.err.println();
+            System.err.println("Error adding service: " + e.getMessage());
         }
     }
 

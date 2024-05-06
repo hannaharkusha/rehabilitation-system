@@ -28,8 +28,8 @@ public class ClientUnitTest {
     @Test
     public void testGetAllClients() {
         List<Client> clients = Arrays.asList(
-                new Client("Jan", "Kowalski", "Client", "password"),
-                new Client("Anna", "Malinowska", "Client", "password")
+                new Client("Jan", "Kowalski", "password"),
+                new Client("Anna", "Malinowska", "password")
         );
 
         when(clientRepository.findAll()).thenReturn(clients);
@@ -39,7 +39,7 @@ public class ClientUnitTest {
 
     @Test
     public void testGetClientById() {
-        Client client = new Client("Jan", "Kowalski", "Client", "password");
+        Client client = new Client("Jan", "Kowalski", "password");
         client.setUserId(1);
 
         when(clientRepository.findById(1)).thenReturn(Optional.of(client));
@@ -50,11 +50,11 @@ public class ClientUnitTest {
 
     @Test
     public void testAddClient() {
-        Client client = new Client("Jan", "Kowalski", "Client", "password");
+        Client client = new Client("Jan", "Kowalski", "password");
         client.setUserId(1);
 
         when(clientRepository.save(any(Client.class))).thenReturn(client);
-        clientService.addClient(client.getName(), client.getSurname(), client.getPosition(), client.getPassword());
+        clientService.addClient(client.getName(), client.getSurname(), client.getPassword());
         verify(clientRepository, times(1)).save(any(Client.class));
     }
 

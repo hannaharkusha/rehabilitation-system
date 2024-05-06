@@ -9,7 +9,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.time.LocalTime;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -29,8 +28,8 @@ public class ServiceUnitTest {
     @Test
     public void testGetAllServices() {
         List<Service> services = Arrays.asList(
-                new Service("name1", 350, LocalTime.of(0, 25, 0, 0)),
-                new Service("name2", 1200, LocalTime.of(1, 40, 0, 0))
+                new Service("name1", 350, 30),
+                new Service("name2", 1200, 90)
         );
 
         when(serviceRepository.findAll()).thenReturn(services);
@@ -40,7 +39,7 @@ public class ServiceUnitTest {
 
     @Test
     public void testGetServiceById() {
-        Service service = new Service("name", 100, LocalTime.of(0, 10, 0, 0));
+        Service service = new Service("name", 100, 10);
         service.setServiceId(1);
 
         when(serviceRepository.findById(1)).thenReturn(Optional.of(service));
@@ -51,11 +50,11 @@ public class ServiceUnitTest {
 
     @Test
     public void testAddService() {
-        Service service = new Service("name", 100, LocalTime.of(0, 10, 0, 0));
+        Service service = new Service("name", 100, 10);
         service.setServiceId(1);
 
         when(serviceRepository.save(any(Service.class))).thenReturn(service);
-        serviceService.addService("name", 100, LocalTime.of(0, 10, 0, 0));
+        serviceService.addService("name", 100, 10);
         verify(serviceRepository, times(1)).save(any(Service.class));
     }
 
