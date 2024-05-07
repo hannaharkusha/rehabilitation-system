@@ -30,6 +30,11 @@ public class EmployeeController {
         return employeeService.getEmployeeById(id);
     }
 
+    @GetMapping("/email")
+    public Optional<Employee> getEmployeeByEmail(String email) {
+        return employeeService.getEmployeeByEmail(email);
+    }
+
     @GetMapping("/add")
     public void addEmployee(String name, String surname, String password ,String position, String email) {
         employeeService.addEmployee(name, surname, password, position, email);

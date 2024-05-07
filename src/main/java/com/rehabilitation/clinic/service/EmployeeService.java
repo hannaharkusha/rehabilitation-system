@@ -35,6 +35,18 @@ public class EmployeeService {
         }
     }
 
+    public Optional<Employee> getEmployeeByEmail(String email) {
+        try {
+            if (email == null) {
+                throw new IllegalArgumentException("EmployeeService: incorrect email");
+            }
+            return employeeRepository.findByEmail(email);
+        } catch (Exception e) {
+            System.err.println("Error retrieving employee by email: " + e.getMessage());
+            throw e;
+        }
+    }
+
     public void addEmployee(String name, String surname, String password, String position, String email) {
         try {
             if(name == null || surname == null || password == null || position == null) {
