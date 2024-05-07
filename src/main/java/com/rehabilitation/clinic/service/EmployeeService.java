@@ -35,12 +35,12 @@ public class EmployeeService {
         }
     }
 
-    public void addEmployee(String name, String surname, String password, String position) {
+    public void addEmployee(String name, String surname, String password, String position, String email) {
         try {
             if(name == null || surname == null || password == null || position == null) {
                 throw new IllegalArgumentException("EmployeeService: incorrect data");
             }
-            Employee employee = new Employee(name, surname, password, position);
+            Employee employee = new Employee(name, surname, password, position,email);
             employeeRepository.save(employee);
         } catch (Exception e) {
             System.err.println("Error adding employee: " + e.getMessage());

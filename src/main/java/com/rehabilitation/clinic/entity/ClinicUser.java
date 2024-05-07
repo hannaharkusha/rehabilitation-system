@@ -15,16 +15,29 @@ public abstract class ClinicUser
     @Column(length = 30)
     private String surname;
 
+    @Column(length = 40)
+    private String email;
+
     @Column(length = 20, nullable = false)
     private String password;
 
+
     public ClinicUser(){}
 
-    public ClinicUser(String name, String surname, String password)
+    public ClinicUser(String name, String surname, String password, String email)
     {
         this.name = name;
         this.surname = surname;
         this.password = password;
+        this.email = email;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public int getUserId()

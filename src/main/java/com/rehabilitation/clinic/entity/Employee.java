@@ -10,9 +10,9 @@ public class Employee extends ClinicUser
     private String position;
 
     public Employee(){}
-    public Employee(String name, String surname, String password, String position)
+    public Employee(String name, String surname, String password, String position, String email)
     {
-        super(name, surname, password);
+        super(name, surname, password, email);
         this.position = position;
     }
 
