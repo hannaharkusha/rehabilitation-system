@@ -30,10 +30,15 @@ public class ClientController {
         return clientService.getClientById(id);
     }
 
+
+    //sprawdzic haslo do logowania
+
     @GetMapping("/email")
     public Optional<Client> getClientByEmail(String email) {
         return clientService.getClientByEmail(email);
     }
+
+    //edycja danych osobowych
 
     @GetMapping("/add")
     public void addClient(String name, String surname, String password, String email, String pesel, String phoneNr, String address) {
@@ -44,4 +49,6 @@ public class ClientController {
     public void deleteClientById(int id) {
         clientService.deleteClientById(id);
     }
+
+    //zmiana hasla
 }

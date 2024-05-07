@@ -38,6 +38,8 @@ public class EmployeeHoursController {
         employeeHoursService.addEmployeeHours(employee, dateWork, startTimeWork, endTimeWork);
     }
 
+    //zmiana godzin pracy pracownika
+
     @GetMapping("/delete")
     public void deleteEmployeeHoursById(int id) {
         employeeHoursService.deleteEmployeeHoursById(id);

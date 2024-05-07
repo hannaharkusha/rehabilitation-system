@@ -43,4 +43,9 @@ public class VisitController {
     public void deleteVisitById(int id) {
         visitService.deleteVisitById(id);
     }
+
+
+    //zmiana statusu wizyty
+    //zmianaterminu wizyty
+    //umowienie wizyty
 }

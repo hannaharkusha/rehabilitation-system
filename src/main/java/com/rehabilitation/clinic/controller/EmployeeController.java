@@ -25,6 +25,8 @@ public class EmployeeController {
         return employeeService.getAllEmployees();
     }
 
+    //sprawdzenie hasla
+
     @GetMapping("/id")
     public Optional<Employee> getEmployeeById(int id) {
         return employeeService.getEmployeeById(id);
@@ -35,6 +37,8 @@ public class EmployeeController {
         return employeeService.getEmployeeByEmail(email);
     }
 
+    //haszowanie hasla
+
     @GetMapping("/add")
     public void addEmployee(String name, String surname, String password ,String position, String email) {
         employeeService.addEmployee(name, surname, password, position, email);
@@ -44,4 +48,6 @@ public class EmployeeController {
     public void deleteEmployeeById(int id) {
         employeeService.deleteEmployeeById(id);
     }
+
+    //reset haslo
 }

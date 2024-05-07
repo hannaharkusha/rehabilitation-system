@@ -11,7 +11,7 @@ public class Client extends ClinicUser
 
     @Column(length = 11)
     private String phoneNr;
-    @Column(length = 11)
+    @Column(length = 100)
     private String address;
 
     public Client(){}
