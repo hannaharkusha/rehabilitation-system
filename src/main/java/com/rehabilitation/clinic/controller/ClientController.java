@@ -30,6 +30,11 @@ public class ClientController {
         return clientService.getClientById(id);
     }
 
+    @GetMapping("/email")
+    public Optional<Client> getClientByEmail(String email) {
+        return clientService.getClientByEmail(email);
+    }
+
     @GetMapping("/add")
     public void addClient(String name, String surname, String password, String email, String pesel, String phoneNr, String address) {
         clientService.addClient(name, surname, password, email,pesel, phoneNr, address);

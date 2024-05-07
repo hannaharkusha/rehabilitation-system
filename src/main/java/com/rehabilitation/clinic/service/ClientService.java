@@ -35,9 +35,21 @@ public class ClientService {
         }
     }
 
+    public Optional<Client> getClientByEmail(String email) {
+        try {
+            if (email == null) {
+                throw new IllegalArgumentException("ClientService: incorrect email");
+            }
+            return clientRepository.findByEmail(email);
+        } catch (Exception e) {
+            System.err.println("Error retrieving client by email: " + e.getMessage());
+            throw e;
+        }
+    }
+
     public void addClient(String name, String surname, String password, String email, String pesel, String phoneNr, String address) {
         try {
-            if(name == null || surname == null || password == null) {
+            if(name == null || surname == null || password == null || email == null) {
                 throw new IllegalArgumentException("ClientService: incorrect data");
             }
             Client client = new Client(name, surname, password, email,pesel, phoneNr, address);

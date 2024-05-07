@@ -24,7 +24,7 @@ public class ClientIntegrationTest {
     //integration tests with real database
     @Test
     public void testCRUDOperationsWithRealDatabase() {
-        Client client = new Client("Jan", "Kowalski", "password");
+        Client client = new Client("Jan", "Kowalski", "pass", "jan.k@email.com", "01010101010", "987654432", "ul. Dobra");
         clientRepository.save(client);
 
         Optional<Client> retrievedClient = clientRepository.findById(client.getUserId());

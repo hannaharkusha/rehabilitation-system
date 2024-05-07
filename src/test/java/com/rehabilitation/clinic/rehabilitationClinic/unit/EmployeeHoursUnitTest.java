@@ -30,7 +30,7 @@ public class EmployeeHoursUnitTest {
 
     @Test
     public void testGetAllEmployeeHours() {
-        Employee employee = new Employee("Jan", "Kowalski", "Rehabilitant", "password");
+        Employee employee = new Employee("Jan", "Kowalski", "pass", "Rehabilitant", "email");
         List<EmployeeHours> employeeHours = Arrays.asList(
                 new EmployeeHours(employee, LocalDate.of(2024, 3, 14), LocalTime.of(8, 0),
                         LocalTime.of(16, 0)),
@@ -49,7 +49,7 @@ public class EmployeeHoursUnitTest {
 
     @Test
     public void testGetEmployeeHoursById() {
-        Employee employee = new Employee("Jan", "Kowalski", "Rehabilitant", "password");
+        Employee employee = new Employee("Jan", "Kowalski", "pass", "Rehabilitant", "email");
         EmployeeHours employeeHours = new EmployeeHours(employee, LocalDate.of(2024, 3, 14), LocalTime.of(8, 0),
                 LocalTime.of(16, 0));
         employeeHours.setEmployeeHoursId(1);
@@ -62,7 +62,7 @@ public class EmployeeHoursUnitTest {
 
     @Test
     public void testAddEmployeeHours() {
-        Employee employee = new Employee("Jan", "Kowalski", "Rehabilitant", "password");
+        Employee employee = new Employee("Jan", "Kowalski", "pass", "Rehabilitant", "email");
         EmployeeHours employeeHours = new EmployeeHours(employee, LocalDate.of(2024, 3, 14),
                 LocalTime.of(8, 0), LocalTime.of(16, 0));
         employeeHours.setEmployeeHoursId(1);

@@ -28,9 +28,9 @@ public class EmployeeUnitTest {
     @Test
     public void testGetAllEmployees() {
         List<Employee> employees = Arrays.asList(
-                new Employee("Jan", "Kowalski", "Rehabilitant", "password"),
-                new Employee("Anna", "Malinowska", "Rehabilitant", "password"),
-                new Employee("Bożena", "Nowacka", "Recepcjonista", "password")
+                new Employee("Jan", "Kowalski", "pass", "Rehabilitant", "email"),
+                new Employee("Piotr", "Kowalski", "pass", "Rehabilitant", "email"),
+                new Employee("Tomasz", "Kowalski", "pass", "Rehabilitant", "email")
         );
 
         when(employeeRepository.findAll()).thenReturn(employees);
@@ -40,7 +40,7 @@ public class EmployeeUnitTest {
 
     @Test
     public void testGetEmployeeById() {
-        Employee employee = new Employee("Jan", "Kowalski", "Rehabilitant", "password");
+        Employee employee = new Employee("Jan", "Kowalski", "pass", "Rehabilitant", "email");
         employee.setUserId(1);
 
         when(employeeRepository.findById(1)).thenReturn(Optional.of(employee));
@@ -51,11 +51,12 @@ public class EmployeeUnitTest {
 
     @Test
     public void testAddEmployee() {
-        Employee employee = new Employee("Jan", "Kowalski", "Rehabilitant", "password");
+        Employee employee = new Employee("Jan", "Kowalski", "pass", "Rehabilitant", "email");
         employee.setUserId(1);
 
         when(employeeRepository.save(any(Employee.class))).thenReturn(employee);
-        employeeService.addEmployee(employee.getName(), employee.getSurname(), employee.getPosition(), employee.getPassword());
+        employeeService.addEmployee(employee.getName(), employee.getSurname(), employee.getEmail(),
+                employee.getPosition(), employee.getPassword());
         verify(employeeRepository, times(1)).save(any(Employee.class));
     }
 

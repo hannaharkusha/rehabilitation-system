@@ -31,7 +31,7 @@ public class VisitUnitTest {
 
     @Test
     public void testGetAllVisits() {
-        Employee employee = new Employee("Jan", "Kowalski", "Rehabilitant", "password");
+        Employee employee = new Employee("Jan", "Kowalski", "pass", "Rehabilitant", "email");
         Service service = new Service("name1", 350, 30);
         List<Visit> visits = Arrays.asList(
                 new Visit(LocalDate.of(2024, 9, 17), LocalTime.of(12, 30),
@@ -47,7 +47,7 @@ public class VisitUnitTest {
 
     @Test
     public void testGetVisitById() {
-        Employee employee = new Employee("Jan", "Kowalski", "Rehabilitant", "password");
+        Employee employee = new Employee("Jan", "Kowalski", "pass", "Rehabilitant", "email");
         Service service = new Service("name1", 350, 30);
         Visit visit = new Visit(LocalDate.of(2024, 9, 17), LocalTime.of(12, 30),
                         LocalTime.of(13, 30), employee, service);
@@ -61,7 +61,7 @@ public class VisitUnitTest {
 
     @Test
     public void testAddClient() {
-        Employee employee = new Employee("Jan", "Kowalski", "Rehabilitant", "password");
+        Employee employee = new Employee("Jan", "Kowalski", "pass", "Rehabilitant", "email");
         Service service = new Service("name1", 350, 30);
         Visit visit = new Visit(LocalDate.of(2024, 9, 17), LocalTime.of(12, 30),
                 LocalTime.of(13, 30), employee, service);
