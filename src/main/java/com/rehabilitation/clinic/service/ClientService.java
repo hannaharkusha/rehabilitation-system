@@ -71,4 +71,148 @@ public class ClientService {
         }
     }
 
+    //testowo - nie wiem czy zadziała ale narazie ja zostawiam
+    public void editClient(int clientId, String name, String surname, String email, String pesel, String phoneNr, String address) {
+        try {
+            if (clientId <= 0) {
+                throw new IllegalArgumentException("ClientService: incorrect id");
+            }
+
+            Optional<Client> existingClientOptional = clientRepository.findById(clientId);
+            if (existingClientOptional.isPresent()) {
+                Client existingClient = existingClientOptional.get();
+                existingClient.setName(name);
+                existingClient.setSurname(surname);
+                existingClient.setEmail(email);
+                existingClient.setPesel(pesel);
+                existingClient.setPhoneNr(phoneNr);
+                existingClient.setAddress(address);
+
+                clientRepository.save(existingClient);
+            } else {
+                throw new IllegalArgumentException("ClientService: Client not found with id " + clientId);
+            }
+        } catch (Exception e) {
+            System.err.println("Error editing client: " + e.getMessage());
+            throw e;
+        }
+    }
+    public void editClientAddress(int clientId, String address) {
+        try {
+            if (clientId <= 0) {
+                throw new IllegalArgumentException("ClientService: incorrect id");
+            }
+            Optional<Client> existingClientOptional = clientRepository.findById(clientId);
+            if (existingClientOptional.isPresent()) {
+                Client existingClient = existingClientOptional.get();
+                existingClient.setAddress(address);
+
+                clientRepository.save(existingClient);
+            } else {
+                throw new IllegalArgumentException("ClientService: Client not found with id " + clientId);
+            }
+        } catch (Exception e) {
+            System.err.println("Error editing client: " + e.getMessage());
+            throw e;
+        }
+    }
+    public void editClientPhoneNr(int clientId, String phoneNr) {
+        try {
+            if (clientId <= 0) {
+                throw new IllegalArgumentException("ClientService: incorrect id");
+            }
+            Optional<Client> existingClientOptional = clientRepository.findById(clientId);
+            if (existingClientOptional.isPresent()) {
+                Client existingClient = existingClientOptional.get();
+                existingClient.setPhoneNr(phoneNr);
+
+                clientRepository.save(existingClient);
+            } else {
+                throw new IllegalArgumentException("ClientService: Client not found with id " + clientId);
+            }
+        } catch (Exception e) {
+            System.err.println("Error editing client: " + e.getMessage());
+            throw e;
+        }
+    }
+
+    public void editClientPesel(int clientId, String pesel) {
+        try {
+            if (clientId <= 0) {
+                throw new IllegalArgumentException("ClientService: incorrect id");
+            }
+            Optional<Client> existingClientOptional = clientRepository.findById(clientId);
+            if (existingClientOptional.isPresent()) {
+                Client existingClient = existingClientOptional.get();
+                existingClient.setPesel(pesel);
+
+                clientRepository.save(existingClient);
+            } else {
+                throw new IllegalArgumentException("ClientService: Client not found with id " + clientId);
+            }
+        } catch (Exception e) {
+            System.err.println("Error editing client: " + e.getMessage());
+            throw e;
+        }
+    }
+
+    public void editClientName(int clientId, String name) {
+        try {
+            if (clientId <= 0) {
+                throw new IllegalArgumentException("ClientService: incorrect id");
+            }
+            Optional<Client> existingClientOptional = clientRepository.findById(clientId);
+            if (existingClientOptional.isPresent()) {
+                Client existingClient = existingClientOptional.get();
+                existingClient.setName(name);
+
+                clientRepository.save(existingClient);
+            } else {
+                throw new IllegalArgumentException("ClientService: Client not found with id " + clientId);
+            }
+        } catch (Exception e) {
+            System.err.println("Error editing client: " + e.getMessage());
+            throw e;
+        }
+    }
+
+    public void editClientSurname(int clientId, String surname) {
+        try {
+            if (clientId <= 0) {
+                throw new IllegalArgumentException("ClientService: incorrect id");
+            }
+            Optional<Client> existingClientOptional = clientRepository.findById(clientId);
+            if (existingClientOptional.isPresent()) {
+                Client existingClient = existingClientOptional.get();
+                existingClient.setSurname(surname);
+
+                clientRepository.save(existingClient);
+            } else {
+                throw new IllegalArgumentException("ClientService: Client not found with id " + clientId);
+            }
+        } catch (Exception e) {
+            System.err.println("Error editing client: " + e.getMessage());
+            throw e;
+        }
+    }
+
+    public void editClientEmail(int clientId, String email) {
+        try {
+            if (clientId <= 0) {
+                throw new IllegalArgumentException("ClientService: incorrect id");
+            }
+            Optional<Client> existingClientOptional = clientRepository.findById(clientId);
+            if (existingClientOptional.isPresent()) {
+                Client existingClient = existingClientOptional.get();
+                existingClient.setEmail(email);
+
+                clientRepository.save(existingClient);
+            } else {
+                throw new IllegalArgumentException("ClientService: Client not found with id " + clientId);
+            }
+        } catch (Exception e) {
+            System.err.println("Error editing client: " + e.getMessage());
+            throw e;
+        }
+    }
 }

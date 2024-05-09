@@ -36,7 +36,7 @@ public class Service {
         return duration;
     }
 
-    public void setDuration(LocalTime time) {
+    public void setDuration(int duration) {
         this.duration = duration;
     }
 

@@ -3,9 +3,7 @@ package com.rehabilitation.clinic.controller;
 import com.rehabilitation.clinic.entity.Client;
 import com.rehabilitation.clinic.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -39,6 +37,34 @@ public class ClientController {
     }
 
     //edycja danych osobowych
+    @PutMapping("/edit")
+    public void editClient(int clientId, String name, String surname, String email, String pesel, String phoneNr, String address) {
+        clientService.editClient(clientId,name,surname,email,pesel,phoneNr,address);
+    }
+    @PutMapping("/edit-address")
+    public void editClientAddress(int clientId, String address ) {
+        clientService.editClientAddress( clientId, address);
+    }
+    @PutMapping("/edit-phoneNr")
+    public void editClientPhoneNr(int clientId, String phoneNr ) {
+        clientService.editClientPhoneNr( clientId, phoneNr);
+    }
+    @PutMapping("/edit-pesel")
+    public void editClientPesel(int clientId, String pesel ) {
+        clientService.editClientPesel( clientId, pesel);
+    }
+    @PutMapping("/edit-name")
+    public void editClientName(int clientId, String name ) {
+        clientService.editClientName( clientId, name);
+    }
+    @PutMapping("/edit-surname")
+    public void editClientSurname(int clientId, String surname ) {
+        clientService.editClientSurname( clientId, surname);
+    }
+    @PutMapping("/edit-email")
+    public void editClientEmail(int clientId, String email ) {
+        clientService.editClientEmail( clientId, email);
+    }
 
     @GetMapping("/add")
     public void addClient(String name, String surname, String password, String email, String pesel, String phoneNr, String address) {

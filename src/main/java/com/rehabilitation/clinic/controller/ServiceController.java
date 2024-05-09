@@ -3,9 +3,9 @@ package com.rehabilitation.clinic.controller;
 import com.rehabilitation.clinic.entity.Service;
 import com.rehabilitation.clinic.service.ServiceService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 import java.util.Optional;
@@ -42,4 +42,9 @@ public class ServiceController {
 
 
     //modyfikacji zabiegu
+    @PutMapping("/edit")
+    public void editService(int serviceId, String name, float price, int duration) {
+        serviceService.editService(serviceId, name, price, duration);
+    }
+
 }

@@ -5,6 +5,7 @@ import com.rehabilitation.clinic.repository.ServiceRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 
+
 import java.util.List;
 import java.util.Optional;
 
@@ -54,6 +55,29 @@ public class ServiceService {
             serviceRepository.deleteById(id);
         } catch (Exception e) {
             System.err.println("Error deleting service: " + e.getMessage());
+        }
+    }
+
+    public void editService(int serviceId, String name, float price, int duration) {
+        try {
+            if ( serviceId <= 0) {
+                throw new IllegalArgumentException("ServiceService: incorrect id");
+            }
+
+            Optional<Service> existingServiceOptional = serviceRepository.findById(serviceId);
+            if (existingServiceOptional.isPresent()) {
+                Service existingService = existingServiceOptional.get();
+                existingService.setName(name);
+                existingService.setPrice(price);
+                existingService.setDuration(duration);
+
+                serviceRepository.save(existingService);
+            } else {
+                throw new IllegalArgumentException("ServiceService: Service not found with id " +serviceId);
+            }
+        } catch (Exception e) {
+            System.err.println("Error editing service: " + e.getMessage());
+            throw e;
         }
     }
 }
