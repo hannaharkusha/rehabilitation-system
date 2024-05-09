@@ -46,5 +46,19 @@ public class ServiceController {
     public void editService(int serviceId, String name, float price, int duration) {
         serviceService.editService(serviceId, name, price, duration);
     }
+    @PutMapping("/edit-name")
+    public void editServiceName(int serviceId, String name) {
+        serviceService.editServiceName(serviceId, name);
+    }
+
+    @PutMapping("/edit-price")
+    public void editServicePrice(int serviceId, float price) {
+        serviceService.editServicePrice(serviceId, price);
+    }
+
+    @PutMapping("/edit-duration")
+    public void editServiceDuration(int serviceId, int duration) {
+        serviceService.editServiceDuration( serviceId, duration);
+    }
 
 }

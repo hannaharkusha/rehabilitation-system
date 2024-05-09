@@ -71,7 +71,7 @@ public class ClientService {
         }
     }
 
-    //testowo - nie wiem czy zadziała ale narazie ja zostawiam
+
     public void editClient(int clientId, String name, String surname, String email, String pesel, String phoneNr, String address) {
         try {
             if (clientId <= 0) {

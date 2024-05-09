@@ -80,4 +80,65 @@ public class ServiceService {
             throw e;
         }
     }
+
+    public void editServiceName(int serviceId, String name) {
+        try {
+            if ( serviceId <= 0) {
+                throw new IllegalArgumentException("ServiceService: incorrect id");
+            }
+
+            Optional<Service> existingServiceOptional = serviceRepository.findById(serviceId);
+            if (existingServiceOptional.isPresent()) {
+                Service existingService = existingServiceOptional.get();
+                existingService.setName(name);
+
+                serviceRepository.save(existingService);
+            } else {
+                throw new IllegalArgumentException("ServiceService: Service not found with id " +serviceId);
+            }
+        } catch (Exception e) {
+            System.err.println("Error editing service: " + e.getMessage());
+            throw e;
+        }
+    }
+    public void editServicePrice(int serviceId, float price) {
+        try {
+            if ( serviceId <= 0) {
+                throw new IllegalArgumentException("ServiceService: incorrect id");
+            }
+
+            Optional<Service> existingServiceOptional = serviceRepository.findById(serviceId);
+            if (existingServiceOptional.isPresent()) {
+                Service existingService = existingServiceOptional.get();
+                existingService.setPrice(price);
+
+                serviceRepository.save(existingService);
+            } else {
+                throw new IllegalArgumentException("ServiceService: Service not found with id " +serviceId);
+            }
+        } catch (Exception e) {
+            System.err.println("Error editing service: " + e.getMessage());
+            throw e;
+        }
+    }
+    public void editServiceDuration(int serviceId, int duration) {
+        try {
+            if ( serviceId <= 0) {
+                throw new IllegalArgumentException("ServiceService: incorrect id");
+            }
+
+            Optional<Service> existingServiceOptional = serviceRepository.findById(serviceId);
+            if (existingServiceOptional.isPresent()) {
+                Service existingService = existingServiceOptional.get();
+                existingService.setDuration(duration);
+
+                serviceRepository.save(existingService);
+            } else {
+                throw new IllegalArgumentException("ServiceService: Service not found with id " +serviceId);
+            }
+        } catch (Exception e) {
+            System.err.println("Error editing service: " + e.getMessage());
+            throw e;
+        }
+    }
 }
