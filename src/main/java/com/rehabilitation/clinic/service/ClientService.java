@@ -2,6 +2,7 @@ package com.rehabilitation.clinic.service;
 
 import com.rehabilitation.clinic.entity.Client;
 import com.rehabilitation.clinic.repository.ClientRepository;
+import encoding.PasswordEncoding;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,10 +14,12 @@ import java.util.Optional;
 @Transactional
 public class ClientService {
     private final ClientRepository clientRepository;
+    private final PasswordEncoding passwordEncoding;
 
     @Autowired
     public ClientService(ClientRepository clientRepository) {
         this.clientRepository = clientRepository;
+        this.passwordEncoding = new PasswordEncoding();
     }
 
     public List<Client> getAllClients() {
@@ -52,7 +55,8 @@ public class ClientService {
             if(name == null || surname == null || password == null || email == null) {
                 throw new IllegalArgumentException("ClientService: incorrect data");
             }
-            Client client = new Client(name, surname, password, email,pesel, phoneNr, address);
+            String hashedPassword = passwordEncoding.hashPassword(password);
+            Client client = new Client(name, surname, hashedPassword, email, pesel, phoneNr, address);
             clientRepository.save(client);
         } catch (Exception e) {
             System.err.println("Error adding client: " + e.getMessage());
@@ -214,5 +218,16 @@ public class ClientService {
             System.err.println("Error editing client: " + e.getMessage());
             throw e;
         }
+    }
+
+    public Optional<Client> authenticateClient(String email, String password) {
+        Optional<Client> optionalClient = clientRepository.findByEmail(email);
+        if (optionalClient.isPresent()) {
+            Client client = optionalClient.get();
+            if (passwordEncoding.checkPassword(password, client.getPassword())) {
+                return Optional.of(client);
+            }
+        }
+        return Optional.empty();
     }
 }

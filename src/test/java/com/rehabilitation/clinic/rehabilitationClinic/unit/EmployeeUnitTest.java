@@ -3,6 +3,7 @@ package com.rehabilitation.clinic.rehabilitationClinic.unit;
 import com.rehabilitation.clinic.entity.Employee;
 import com.rehabilitation.clinic.repository.EmployeeRepository;
 import com.rehabilitation.clinic.service.EmployeeService;
+import encoding.PasswordEncoding;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -25,6 +26,9 @@ public class EmployeeUnitTest {
     @InjectMocks
     private EmployeeService employeeService;
 
+    @Mock
+    private PasswordEncoding passwordEncoding;
+
     @Test
     public void testGetAllEmployees() {
         List<Employee> employees = Arrays.asList(
@@ -40,7 +44,9 @@ public class EmployeeUnitTest {
 
     @Test
     public void testGetEmployeeById() {
-        Employee employee = new Employee("Jan", "Kowalski", "pass", "Rehabilitant", "email");
+        String plainPassword = "pass";
+        String hashedPassword = passwordEncoding.hashPassword(plainPassword);
+        Employee employee = new Employee("Jan", "Kowalski", hashedPassword, "Rehabilitant", "email");
         employee.setUserId(1);
 
         when(employeeRepository.findById(1)).thenReturn(Optional.of(employee));
@@ -51,7 +57,9 @@ public class EmployeeUnitTest {
 
     @Test
     public void testAddEmployee() {
-        Employee employee = new Employee("Jan", "Kowalski", "pass", "Rehabilitant", "email");
+        String plainPassword = "pass";
+        String hashedPassword = passwordEncoding.hashPassword(plainPassword);
+        Employee employee = new Employee("Jan", "Kowalski", hashedPassword, "Rehabilitant", "email");
         employee.setUserId(1);
 
         when(employeeRepository.save(any(Employee.class))).thenReturn(employee);
