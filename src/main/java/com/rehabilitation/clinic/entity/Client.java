@@ -11,16 +11,14 @@ public class Client extends ClinicUser
 
     @Column(length = 11)
     private String phoneNr;
-    @Column(length = 100)
-    private String address;
+
 
     public Client(){}
 
-    public Client(String name, String surname, String password, String email, String pesel, String phoneNr, String address) {
+    public Client(String name, String surname, String password, String email, String pesel, String phoneNr) {
         super(name, surname, password, email);
         this.pesel = pesel;
         this.phoneNr = phoneNr;
-        this.address = address;
     }
 
     public String getPesel()
@@ -41,15 +39,5 @@ public class Client extends ClinicUser
     public void setPhoneNr(String phoneNr)
     {
         this.phoneNr = phoneNr;
-    }
-
-    public String getAddress()
-    {
-        return address;
-    }
-
-    public void setAddress(String address)
-    {
-        this.address = address;
     }
 }

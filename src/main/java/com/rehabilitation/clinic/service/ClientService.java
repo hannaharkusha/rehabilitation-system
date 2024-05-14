@@ -47,12 +47,12 @@ public class ClientService {
         }
     }
 
-    public void addClient(String name, String surname, String password, String email, String pesel, String phoneNr, String address) {
+    public void addClient(String name, String surname, String password, String email, String pesel, String phoneNr) {
         try {
             if(name == null || surname == null || password == null || email == null) {
                 throw new IllegalArgumentException("ClientService: incorrect data");
             }
-            Client client = new Client(name, surname, password, email,pesel, phoneNr, address);
+            Client client = new Client(name, surname, password, email,pesel, phoneNr);
             clientRepository.save(client);
         } catch (Exception e) {
             System.err.println("Error adding client: " + e.getMessage());

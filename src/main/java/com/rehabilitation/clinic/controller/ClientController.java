@@ -41,8 +41,8 @@ public class ClientController {
     //edycja danych osobowych
 
     @GetMapping("/add")
-    public void addClient(String name, String surname, String password, String email, String pesel, String phoneNr, String address) {
-        clientService.addClient(name, surname, password, email,pesel, phoneNr, address);
+    public void addClient(String name, String surname, String password, String email, String pesel, String phoneNr) {
+        clientService.addClient(name, surname, password, email,pesel, phoneNr);
     }
 
     @GetMapping("/delete")

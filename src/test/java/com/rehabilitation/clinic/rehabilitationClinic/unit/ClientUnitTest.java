@@ -28,8 +28,8 @@ public class ClientUnitTest {
     @Test
     public void testGetAllClients() {
         List<Client> clients = Arrays.asList(
-                new Client("Jan", "Kowalski", "pass", "jan.k@email.com", "01010101010", "987654432", "ul. Wpadl w Pokrzywy"),
-                new Client("Anna", "Malinowska", "pass", "anna.malinowska@email.com", "01010101010", "987654432", "ul. Pokrzywowa")
+                new Client("Jan", "Kowalski", "pass", "jan.k@email.com", "01010101010", "987654432"),
+                new Client("Anna", "Malinowska", "pass", "anna.malinowska@email.com", "01010101010", "987654432")
                 );
 
         when(clientRepository.findAll()).thenReturn(clients);
@@ -39,7 +39,7 @@ public class ClientUnitTest {
 
     @Test
     public void testGetClientById() {
-        Client client = new Client("Jan", "Kowalski", "pass", "jan.k@email.com", "01010101010", "987654432", "ul. Dobra");
+        Client client = new Client("Jan", "Kowalski", "pass", "jan.k@email.com", "01010101010", "987654432");
 
         client.setUserId(1);
 
@@ -52,7 +52,7 @@ public class ClientUnitTest {
     @Test
     public void testGetClientByEmail() {
         String email = "jan.k@email.com";
-        Client client = new Client("Jan", "Kowalski", "pass", email, "01010101010", "987654432", "ul. Dobra");
+        Client client = new Client("Jan", "Kowalski", "pass", email, "01010101010", "987654432");
 
         when(clientRepository.findByEmail(email)).thenReturn(Optional.of(client));
         Optional<Client> result = clientService.getClientByEmail(email);
@@ -62,12 +62,12 @@ public class ClientUnitTest {
 
     @Test
     public void testAddClient() {
-        Client client = new Client("Jan", "Kowalski", "pass", "jan.k@email.com", "01010101010", "987654432", "ul. Dobra");
+        Client client = new Client("Jan", "Kowalski", "pass", "jan.k@email.com", "01010101010", "987654432");
         client.setUserId(1);
 
         when(clientRepository.save(any(Client.class))).thenReturn(client);
         clientService.addClient(client.getName(), client.getSurname(), client.getPassword(), client.getEmail(),
-                client.getPesel(), client.getPhoneNr(), client.getAddress());
+                client.getPesel(), client.getPhoneNr());
         verify(clientRepository, times(1)).save(any(Client.class));
     }
 
