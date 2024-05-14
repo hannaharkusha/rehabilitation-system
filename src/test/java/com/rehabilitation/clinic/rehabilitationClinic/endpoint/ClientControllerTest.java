@@ -30,7 +30,7 @@ class ClientControllerTest {
     @Test
     void testGetClientByEmail() {
         String email = "test@example.com";
-        Client expectedClient = new Client("John", "Doe", "password", email, "12345678901", "123456789", "123 Example St.");
+        Client expectedClient = new Client("John", "Doe", "password", email, "12345678901", "123456789");
 
         when(clientService.getClientByEmail(email)).thenReturn(Optional.of(expectedClient));
         Optional<Client> actualClient = clientController.getClientByEmail(email);

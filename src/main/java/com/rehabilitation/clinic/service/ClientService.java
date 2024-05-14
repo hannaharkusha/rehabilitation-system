@@ -55,7 +55,6 @@ public class ClientService {
             if(name == null || surname == null || password == null || email == null) {
                 throw new IllegalArgumentException("ClientService: incorrect data");
             }
-            //Client client = new Client(name, surname, password, email,pesel, phoneNr);
 
             String hashedPassword = passwordEncoding.hashPassword(password);
             Client client = new Client(name, surname, hashedPassword, email, pesel, phoneNr);
