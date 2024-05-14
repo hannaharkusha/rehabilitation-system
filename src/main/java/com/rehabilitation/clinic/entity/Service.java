@@ -1,8 +1,6 @@
 package com.rehabilitation.clinic.entity;
 
 import jakarta.persistence.*;
-import java.time.LocalTime;
-
 @Entity
 public class Service {
     @Id

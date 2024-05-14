@@ -78,4 +78,6 @@ public class ClientController {
     public Optional<Client> authenticateClient(String email, String password) {
         return clientService.authenticateClient(email, password);
     }
+
+
 }
