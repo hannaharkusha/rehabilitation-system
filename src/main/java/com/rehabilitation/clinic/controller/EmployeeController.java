@@ -49,5 +49,8 @@ public class EmployeeController {
         employeeService.deleteEmployeeById(id);
     }
 
-    //reset haslo
+    @GetMapping("/authentication")
+    public Optional<Employee> authenticateEmployee(String email, String password) {
+        return employeeService.authenticateEmployee(email, password);
+    }
 }

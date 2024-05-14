@@ -3,6 +3,7 @@ package com.rehabilitation.clinic.rehabilitationClinic.unit;
 import com.rehabilitation.clinic.entity.Client;
 import com.rehabilitation.clinic.repository.ClientRepository;
 import com.rehabilitation.clinic.service.ClientService;
+import encoding.PasswordEncoding;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -25,6 +26,9 @@ public class ClientUnitTest {
     @InjectMocks
     private ClientService clientService;
 
+    @Mock
+    private PasswordEncoding passwordEncoding;
+
     @Test
     public void testGetAllClients() {
         List<Client> clients = Arrays.asList(
@@ -39,8 +43,12 @@ public class ClientUnitTest {
 
     @Test
     public void testGetClientById() {
-        Client client = new Client("Jan", "Kowalski", "pass", "jan.k@email.com", "01010101010", "987654432");
 
+        //Client client = new Client("Jan", "Kowalski", "pass", "jan.k@email.com", "01010101010", "987654432");
+
+        String plainPassword = "pass";
+        String hashedPassword = passwordEncoding.hashPassword(plainPassword);
+        Client client = new Client("Jan", "Kowalski", hashedPassword, "jan.k@email.com", "01010101010", "987654432");
         client.setUserId(1);
 
         when(clientRepository.findById(1)).thenReturn(Optional.of(client));
@@ -49,10 +57,14 @@ public class ClientUnitTest {
         assertEquals(client.getName(), result.get().getName());
     }
 
+
     @Test
     public void testGetClientByEmail() {
         String email = "jan.k@email.com";
-        Client client = new Client("Jan", "Kowalski", "pass", email, "01010101010", "987654432");
+//        Client client = new Client("Jan", "Kowalski", "pass", email, "01010101010", "987654432");
+        String plainPassword = "pass";
+        String hashedPassword = passwordEncoding.hashPassword(plainPassword);
+        Client client = new Client("Jan", "Kowalski", hashedPassword, email, "01010101010", "987654432");
 
         when(clientRepository.findByEmail(email)).thenReturn(Optional.of(client));
         Optional<Client> result = clientService.getClientByEmail(email);

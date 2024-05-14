@@ -2,6 +2,7 @@ package com.rehabilitation.clinic.service;
 
 import com.rehabilitation.clinic.entity.Employee;
 import com.rehabilitation.clinic.repository.EmployeeRepository;
+import encoding.PasswordEncoding;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,10 +14,12 @@ import java.util.Optional;
 @Transactional
 public class EmployeeService {
     private final EmployeeRepository employeeRepository;
+    private final PasswordEncoding passwordEncoding;
 
     @Autowired
     public EmployeeService(EmployeeRepository employeeRepository) {
         this.employeeRepository = employeeRepository;
+        this.passwordEncoding = new PasswordEncoding();
     }
 
     public List<Employee> getAllEmployees() {
@@ -52,7 +55,8 @@ public class EmployeeService {
             if(name == null || surname == null || password == null || position == null) {
                 throw new IllegalArgumentException("EmployeeService: incorrect data");
             }
-            Employee employee = new Employee(name, surname, password, position,email);
+            String hashedPassword = passwordEncoding.hashPassword(password);
+            Employee employee = new Employee(name, surname, hashedPassword, position,email);
             employeeRepository.save(employee);
         } catch (Exception e) {
             System.err.println("Error adding employee: " + e.getMessage());
@@ -71,4 +75,14 @@ public class EmployeeService {
         }
     }
 
+    public Optional<Employee> authenticateEmployee(String email, String password) {
+        Optional<Employee> optionalEmployee = employeeRepository.findByEmail(email);
+        if (optionalEmployee.isPresent()) {
+            Employee employee = optionalEmployee.get();
+            if (passwordEncoding.checkPassword(password, employee.getPassword())) {
+                return Optional.of(employee);
+            }
+        }
+        return Optional.empty();
+    }
 }
