@@ -1,9 +1,11 @@
 package com.rehabilitation.clinic.controller;
 
+import com.rehabilitation.clinic.entity.PasswordResetToken;
 import com.rehabilitation.clinic.service.PasswordResetService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/reset")
@@ -14,7 +16,11 @@ public class PasswordResetController {
 
     @GetMapping("/password")
     public void addToken(String email) {
-        // Call service method to handle password reset
         passwordResetService.initiatePasswordReset(email);
+    }
+
+    @GetMapping("/code")
+    public Optional<PasswordResetToken> getCode(String email) {
+        return passwordResetService.getCodeByEmail(email);
     }
 }
