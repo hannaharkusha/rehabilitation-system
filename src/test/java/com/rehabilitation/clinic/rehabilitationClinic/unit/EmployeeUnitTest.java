@@ -57,16 +57,16 @@ public class EmployeeUnitTest {
 
     @Test
     public void testAddEmployee() {
-        String plainPassword = "pass";
+        String plainPassword = "password1";
         String hashedPassword = passwordEncoding.hashPassword(plainPassword);
-        Employee employee = new Employee("Jan", "Kowalski", hashedPassword, "Rehabilitant", "email");
-        employee.setUserId(1);
+        Employee employee = new Employee("Jan", "Kowalski", hashedPassword, "DR", "jan.kowalski@example.com");
 
         when(employeeRepository.save(any(Employee.class))).thenReturn(employee);
         employeeService.addEmployee(employee.getName(), employee.getSurname(), employee.getEmail(),
                 employee.getPosition(), employee.getPassword());
         verify(employeeRepository, times(1)).save(any(Employee.class));
     }
+
 
     @Test
     public void testDeleteEmployeeById() {
