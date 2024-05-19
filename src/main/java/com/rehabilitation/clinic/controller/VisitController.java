@@ -1,5 +1,6 @@
 package com.rehabilitation.clinic.controller;
 
+import com.rehabilitation.clinic.entity.Client;
 import com.rehabilitation.clinic.entity.Employee;
 import com.rehabilitation.clinic.entity.Service;
 import com.rehabilitation.clinic.entity.Visit;
@@ -35,8 +36,8 @@ public class VisitController {
     }
 
     @GetMapping("/add")
-    public void addVisit(LocalDate date, LocalTime startTime, LocalTime endTime, Employee employee, Service service) {
-        visitService.addVisit(date, startTime, endTime, employee, service);
+    public void addVisit(LocalDate date, LocalTime startTime, LocalTime endTime, Employee employee, Service service, Client client) {
+        visitService.addVisit(date, startTime, endTime, employee, service, client);
     }
 
     @GetMapping("/delete")

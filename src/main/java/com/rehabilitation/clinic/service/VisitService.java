@@ -1,5 +1,6 @@
 package com.rehabilitation.clinic.service;
 
+import com.rehabilitation.clinic.entity.Client;
 import com.rehabilitation.clinic.entity.Employee;
 import com.rehabilitation.clinic.entity.Service;
 import com.rehabilitation.clinic.entity.Visit;
@@ -38,12 +39,12 @@ public class VisitService {
         }
     }
 
-    public void addVisit(LocalDate date, LocalTime startTime, LocalTime endTime, Employee employee, Service service) {
+    public void addVisit(LocalDate date, LocalTime startTime, LocalTime endTime, Employee employee, Service service, Client client) {
         try {
             if(date == null || startTime == null || endTime == null || employee == null || service == null) {
                 throw new IllegalArgumentException("VisitService: incorrect data");
             }
-            Visit visit = new Visit(date, startTime, endTime, employee, service);
+            Visit visit = new Visit(date, startTime, endTime, employee, service, client);
             visitRepository.save(visit);
         } catch (Exception e) {
             System.err.println("Error adding visit: " + e.getMessage());

@@ -25,8 +25,16 @@ public class Visit {
     @JoinColumn(name = "client_id", referencedColumnName = "userId")
     private Client client;
 
+    public void setClient(Client client) {
+        this.client = client;
+    }
+
+    public Client getClient() {
+        return client;
+    }
+
     private enum Status {
-        CANCELLED, PENDING, COMPLETED, INPROGRESS, FREE, BOOKED
+        FREE, BOOKED
     }
 
     @Column(name = "status")
@@ -34,15 +42,15 @@ public class Visit {
     private Status status;
 
     public void setStatus(String s) {
-        if (s.equalsIgnoreCase("CANCELLED")) {
-            this.status = Status.CANCELLED;
-        } else if (s.equalsIgnoreCase("PENDING")) {
-            this.status = Status.PENDING;
-        } else if (s.equalsIgnoreCase("COMPLETED")) {
-            this.status = Status.COMPLETED;
-        } else if (s.equalsIgnoreCase("INPROGRESS")) {
-            this.status = Status.INPROGRESS;
-        } else if (s.equalsIgnoreCase("FREE")) {
+//        if (s.equalsIgnoreCase("CANCELLED")) {
+//            this.status = Status.CANCELLED;
+//        } else if (s.equalsIgnoreCase("PENDING")) {
+//            this.status = Status.PENDING;
+//        } else if (s.equalsIgnoreCase("COMPLETED")) {
+//            this.status = Status.COMPLETED;
+//        } else if (s.equalsIgnoreCase("INPROGRESS")) {
+//            this.status = Status.INPROGRESS;
+        if (s.equalsIgnoreCase("FREE")) {
             this.status = Status.FREE;
         } else if (s.equalsIgnoreCase("BOOKED")) {
             this.status = Status.BOOKED;
@@ -56,14 +64,14 @@ public class Visit {
             stat = "FREE";
         } else if (status.equals(Status.BOOKED)) {
             stat = "BOOKED";
-        } else if (status.equals(Status.CANCELLED)) {
-            stat = "CANCELLED";
-        } else if (status.equals(Status.PENDING)) {
-            stat = "PENDING";
-        } else if (status.equals(Status.COMPLETED)) {
-            stat = "COMPLETED";
-        } else if (status.equals(Status.INPROGRESS)) {
-            stat = "INPROGRESS";
+//        } else if (status.equals(Status.CANCELLED)) {
+//            stat = "CANCELLED";
+////        } else if (status.equals(Status.PENDING)) {
+////            stat = "PENDING";
+////        } else if (status.equals(Status.COMPLETED)) {
+////            stat = "COMPLETED";
+////        } else if (status.equals(Status.INPROGRESS)) {
+////            stat = "INPROGRESS";
         }
 
         return stat;
@@ -119,13 +127,14 @@ public class Visit {
 
     public Visit() {}
 
-    public Visit(LocalDate date, LocalTime startTime, LocalTime endTime, Employee employee, Service service) {
+    public Visit(LocalDate date, LocalTime startTime, LocalTime endTime, Employee employee, Service service, Client client) {
         this.date = date;
         this.startTime = startTime;
         this.endTime = endTime;
         this.employee = employee;
         this.service = service;
         this.status = Status.FREE;
+        this.client = client;
     }
 
 
