@@ -39,6 +39,29 @@ public class VisitService {
         }
     }
 
+    public List<Visit> getVisitByClientId(int clientId){
+        try {
+            if(clientId <= 0) {
+                throw new IllegalArgumentException("VisitService: incorrect clientId");
+            }
+            return visitRepository.findByClientId(clientId);
+        } catch (Exception e) {
+            System.err. println("Error retrieving visit");
+            throw e;
+        }
+    }
+
+    public List<Visit> getVisitByEmployeeId(int employeeId){
+        try {
+            if(employeeId <= 0) {
+                throw new IllegalArgumentException("VisitService: incorrect EmployeeId");
+            }
+            return visitRepository.findByEmployeeId(employeeId);
+        } catch (Exception e) {
+            System.err. println("Error retrieving visit");
+            throw e;
+        }
+    }
     public void addVisit(LocalDate date, LocalTime startTime, LocalTime endTime, Employee employee, Service service, Client client) {
         try {
             if(date == null || startTime == null || endTime == null || employee == null || service == null) {

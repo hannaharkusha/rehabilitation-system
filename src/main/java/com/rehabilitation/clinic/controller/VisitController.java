@@ -45,6 +45,15 @@ public class VisitController {
         visitService.deleteVisitById(id);
     }
 
+    @GetMapping("/visit-clientid")
+    public void getVisitByClientId(int clientId) {
+        visitService.getVisitByClientId(clientId);
+    }
+
+    @GetMapping("/visit-employeeId")
+    public void getVisitByEmployeeId(int employeeId) {
+        visitService.getVisitByEmployeeId(employeeId);
+    }
 
     //zmiana statusu wizyty
     //zmianaterminu wizyty
