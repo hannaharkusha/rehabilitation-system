@@ -39,8 +39,10 @@ public class VisitController {
     public void addVisit(LocalDate date, LocalTime startTime, LocalTime endTime, Employee employee, Service service, Client client) {
         visitService.addVisit(date, startTime, endTime, employee, service, client);
     }
-
-
+    @GetMapping("/add-withoutClient")
+    public void addVisitWithoutClient(LocalDate date, LocalTime startTime, LocalTime endTime, Employee employee, Service service){
+        visitService.addVisitWithoutClient(date, startTime, endTime, employee, service);
+    }
     @GetMapping("/delete")
     public void deleteVisitById(int id) {
         visitService.deleteVisitById(id);
