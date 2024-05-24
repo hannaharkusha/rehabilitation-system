@@ -58,8 +58,13 @@ public class VisitController {
 
     //zmiana statusu wizyty - raczej nie trzeba jako osobna funkcja, to będzie realizowane w odwołaniu i umówieniu wizyty
     //zmianaterminu wizyty - funkcja odłowania wizyty i umówienia wizyty
+
     //umowienie wizyty
+    @GetMapping("/booking-visit")
+    public void bookVisitForClient(int clientId, int visitId){visitService.bookVisitForClient(clientId,visitId);}
     //odwołanie wizyty
+    @GetMapping("/cancel-visit")
+    public void cancelVisit(int visitId){visitService.cancelVisit(visitId);}
 
     //wizyty na wybrany dzien dla employee status booked
     //wolne wizyty z danego przedzialu czasowego

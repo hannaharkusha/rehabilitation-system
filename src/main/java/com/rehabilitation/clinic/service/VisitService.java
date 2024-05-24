@@ -62,6 +62,23 @@ public class VisitService {
             throw e;
         }
     }
+    public void bookVisitForClient(int clientId, int visitId)
+    {
+        visitRepository.updateVisitStatusAndClientId(visitId, clientId);
+    }
+
+    @Transactional
+    public void cancelVisit(int visitId)
+    {
+        Optional<Visit> optionalVisit = visitRepository.findById(visitId);
+
+        optionalVisit.ifPresent(visit -> {
+            visit.setStatus("FREE");
+            visit.setClient(null); // Set client to null
+            visitRepository.save(visit);
+        });
+    }
+
     public void addVisit(LocalDate date, LocalTime startTime, LocalTime endTime, Employee employee, Service service, Client client) {
         try {
             if(date == null || startTime == null || endTime == null || employee == null || service == null) {
