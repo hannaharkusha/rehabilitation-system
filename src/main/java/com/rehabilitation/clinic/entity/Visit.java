@@ -32,7 +32,7 @@ public class Visit {
     private Service service;
 
     @ManyToOne
-    @JoinColumn(name = "client_id", referencedColumnName = "userId")
+    @JoinColumn(name = "client_id", referencedColumnName = "userId",nullable = true)
     private Client client;
 
     public void setClient(Client client) {
@@ -147,6 +147,12 @@ public class Visit {
         this.client = client;
         this.result = "";
     }
-
+    public Visit(LocalDate date, LocalTime startTime, LocalTime endTime, Employee employee) {
+        this.date = date;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.employee = employee;
+        this.status = Status.FREE;
+    }
 
 }

@@ -54,6 +54,46 @@ public class VisitService {
         }
     }
 
+    public List<Visit> getVisitByClientId(int clientId){
+        try {
+            if(clientId <= 0) {
+                throw new IllegalArgumentException("VisitService: incorrect clientId");
+            }
+            return visitRepository.findByClientId(clientId);
+        } catch (Exception e) {
+            System.err. println("Error retrieving visit");
+            throw e;
+        }
+    }
+
+    public List<Visit> getVisitByEmployeeId(int employeeId){
+        try {
+            if(employeeId <= 0) {
+                throw new IllegalArgumentException("VisitService: incorrect EmployeeId");
+            }
+            return visitRepository.findByEmployeeId(employeeId);
+        } catch (Exception e) {
+            System.err. println("Error retrieving visit");
+            throw e;
+        }
+    }
+    public void bookVisitForClient(int clientId, int visitId)
+    {
+        visitRepository.updateVisitStatusAndClientId(visitId, clientId);
+    }
+
+    @Transactional
+    public void cancelVisit(int visitId)
+    {
+        Optional<Visit> optionalVisit = visitRepository.findById(visitId);
+
+        optionalVisit.ifPresent(visit -> {
+            visit.setStatus("FREE");
+            visit.setClient(null); // Set client to null
+            visitRepository.save(visit);
+        });
+    }
+
     public void addVisit(LocalDate date, LocalTime startTime, LocalTime endTime, Employee employee, Service service, Client client) {
         try {
             if(date == null || startTime == null || endTime == null || employee == null || service == null) {
@@ -65,7 +105,17 @@ public class VisitService {
             System.err.println("Error adding visit: " + e.getMessage());
         }
     }
-
+    public void addVisitWithoutClient(LocalDate date, LocalTime startTime, LocalTime endTime, Employee employee) {
+        try {
+            if(date == null || startTime == null || endTime == null || employee == null) {
+                throw new IllegalArgumentException("VisitService: incorrect data");
+            }
+            Visit visit = new Visit(date, startTime, endTime, employee);
+            visitRepository.save(visit);
+        } catch (Exception e) {
+            System.err.println("Error adding visit: " + e.getMessage());
+        }
+    }
     public void deleteVisitById(int id) {
         try {
             if(id <= 0) {

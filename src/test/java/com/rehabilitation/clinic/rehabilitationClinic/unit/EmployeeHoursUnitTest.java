@@ -1,9 +1,6 @@
 package com.rehabilitation.clinic.rehabilitationClinic.unit;
 
 import com.rehabilitation.clinic.entity.Employee;
-import com.rehabilitation.clinic.entity.EmployeeHours;
-import com.rehabilitation.clinic.repository.EmployeeHoursRepository;
-import com.rehabilitation.clinic.service.EmployeeHoursService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
