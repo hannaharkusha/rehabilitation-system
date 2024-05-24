@@ -62,4 +62,12 @@ public class EmployeeHoursService {
         }
     }
 
+    public List<EmployeeHours> findEmployeeHoursByDate(LocalDate dateWork){
+       return employeeHoursRepository.findEmployeeHoursByDate(dateWork);
+    }
+
+    public List<EmployeeHours> findEmployeeHoursByDateAndEmployee(LocalDate dateWork,int employeeId){
+       return employeeHoursRepository.findEmployeeHoursByDateAndEmployee(dateWork,employeeId);
+    }
+
 }

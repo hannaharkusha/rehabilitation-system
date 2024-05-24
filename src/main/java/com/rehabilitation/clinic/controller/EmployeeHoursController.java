@@ -47,6 +47,13 @@ public class EmployeeHoursController {
 
     //wyświetlanie harmonogramu na wybrany dzien
 
+    @GetMapping("/select-date")
+    public List<EmployeeHours> findEmployeeHoursByDate(LocalDate dateWork){
+        return employeeHoursService.findEmployeeHoursByDate(dateWork);
+    }
     //wyświetlanie harmonogramu na wybrany dzien dla wybranego pracownika
-
+    @GetMapping("/select-employee")
+    public List<EmployeeHours> findEmployeeHoursByDateAndEmployee(LocalDate dateWork,int employeeId){
+        return employeeHoursService.findEmployeeHoursByDateAndEmployee(dateWork, employeeId);
+    }
 }
