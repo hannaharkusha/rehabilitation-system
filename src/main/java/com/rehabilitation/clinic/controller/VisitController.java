@@ -40,6 +40,11 @@ public class VisitController {
         visitService.addVisit(date, startTime, endTime, employee, service, client);
     }
 
+    @GetMapping("addDescription")
+    public void addVisitDescription(int id, String result){
+        visitService.addDescription(id, result);
+    }
+
     @GetMapping("/delete")
     public void deleteVisitById(int id) {
         visitService.deleteVisitById(id);

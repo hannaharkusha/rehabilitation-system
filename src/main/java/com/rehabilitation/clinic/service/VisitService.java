@@ -27,6 +27,21 @@ public class VisitService {
         return visitRepository.findAll();
     }
 
+    public void addDescription(int id, String result){
+        try{
+        Visit visit = visitRepository.findById(id).orElse(null);
+        if(visit!=null){
+            visit.setResult(result);
+            visitRepository.save(visit);
+        }else{
+            throw new IllegalArgumentException("VisitService: no visit with such an id");
+        }
+        }catch(Exception e){
+            System.err.println("Error adding visit description:");
+            throw e;
+        }
+    }
+
     public Optional<Visit> getVisitById(int id) {
         try {
             if(id <= 0) {

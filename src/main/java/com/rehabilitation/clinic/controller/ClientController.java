@@ -33,8 +33,7 @@ public class ClientController {
         return clientService.getClientByEmail(email);
     }
 
-    //edycja danych osobowych
-    @PutMapping("/edit")
+    @GetMapping("/edit")
     public void editClient(int clientId, String name, String surname, String email, String pesel, String phoneNr) {
         clientService.editClient(clientId,name,surname,email,pesel,phoneNr);
     }

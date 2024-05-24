@@ -13,6 +13,16 @@ public class Visit {
     private LocalTime startTime;
     private LocalTime endTime;
 
+    public void setResult(String result) {
+        this.result = result;
+    }
+
+    private String result;
+
+    public String getResult() {
+        return result;
+    }
+
     @ManyToOne
     @JoinColumn(name = "physiotherapist_id", referencedColumnName = "userId")
     private Employee employee;
@@ -135,6 +145,7 @@ public class Visit {
         this.service = service;
         this.status = Status.FREE;
         this.client = client;
+        this.result = "";
     }
 
 
