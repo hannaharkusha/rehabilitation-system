@@ -79,8 +79,8 @@ public class ClientController {
     }
 
     @GetMapping("/changePassword")
-    public void changePassword(int id, String password){
-        clientService.editClientPassword(id, password);
+    public void changePassword(String email, String password){
+        clientService.editClientPassword(email, password);
     }
 
 }

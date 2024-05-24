@@ -202,12 +202,12 @@ public class ClientService {
         }
     }
 
-    public void editClientPassword(int id, String password){
+    public void editClientPassword(String email, String password){
         try {
-            if (id <= 0) {
+            if (email == null) {
                 throw new IllegalArgumentException("ClientService: incorrect id");
             }
-            Optional<Client> existingClientOptional = clientRepository.findById(id);
+            Optional<Client> existingClientOptional = clientRepository.findByEmail(email);
             if (existingClientOptional.isPresent()) {
                 Client existingClient = existingClientOptional.get();
                 String hashedPassword = passwordEncoding.hashPassword(password);
@@ -215,7 +215,7 @@ public class ClientService {
 
                 clientRepository.save(existingClient);
             } else {
-                throw new IllegalArgumentException("ClientService: Client not found with id " + id);
+                throw new IllegalArgumentException("ClientService: Client not found with id " + email);
             }
         } catch (Exception e) {
             System.err.println("Error editing client: " + e.getMessage());
