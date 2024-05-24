@@ -38,10 +38,15 @@ public class EmployeeHoursController {
         employeeHoursService.addEmployeeHours(employee, dateWork, startTimeWork, endTimeWork);
     }
 
-    //zmiana godzin pracy pracownika
+    //zmiana godzin pracy pracownika - do przemyślenia
 
     @GetMapping("/delete")
     public void deleteEmployeeHoursById(int id) {
         employeeHoursService.deleteEmployeeHoursById(id);
     }
+
+    //wyświetlanie harmonogramu na wybrany dzien
+
+    //wyświetlanie harmonogramu na wybrany dzien dla wybranego pracownika
+
 }

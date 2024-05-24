@@ -56,7 +56,13 @@ public class VisitController {
         visitService.getVisitByEmployeeId(employeeId);
     }
 
-    //zmiana statusu wizyty
-    //zmianaterminu wizyty
+    //zmiana statusu wizyty - raczej nie trzeba jako osobna funkcja, to będzie realizowane w odwołaniu i umówieniu wizyty
+    //zmianaterminu wizyty - funkcja odłowania wizyty i umówienia wizyty
     //umowienie wizyty
+    //odwołanie wizyty
+
+    //wizyty na wybrany dzien dla employee status booked
+    //wolne wizyty z danego przedzialu czasowego
+    //wolne wizyty z danego przedzialu czasowego z wybranym zabiegiem
+
 }
