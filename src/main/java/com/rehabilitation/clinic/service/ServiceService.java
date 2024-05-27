@@ -58,7 +58,7 @@ public class ServiceService {
         }
     }
 
-    public void editService(int serviceId, String name, float price, int duration) {
+    public void editService(int serviceId, String name, float price) {
         try {
             if ( serviceId <= 0) {
                 throw new IllegalArgumentException("ServiceService: incorrect id");
@@ -120,7 +120,7 @@ public class ServiceService {
             throw e;
         }
     }
-    public void editServiceDuration(int serviceId, int duration) {
+    public void editServiceDuration(int serviceId) {
         try {
             if ( serviceId <= 0) {
                 throw new IllegalArgumentException("ServiceService: incorrect id");
