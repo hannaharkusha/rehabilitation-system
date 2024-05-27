@@ -126,4 +126,40 @@ public class VisitService {
             System.err.println("Error deleting visit: " + e.getMessage());
         }
     }
+
+    public List<Visit> getBookedVisitsByEmployeeAndDate(int employeeId, LocalDate date) {
+        try {
+            if(employeeId <= 0 || date == null) {
+                throw new IllegalArgumentException("VisitService: incorrect data");
+            }
+            return visitRepository.findBookedVisitsByEmployeeAndDate(employeeId, date);
+        } catch (Exception e) {
+            System.err.println("Error retrieving booked visits by employee and date:");
+            throw e;
+        }
+    }
+
+    public List<Visit> getFreeVisitsByDate(LocalDate startDate, LocalDate endDate) {
+        try {
+            if(startDate == null || endDate == null) {
+                throw new IllegalArgumentException("VisitService: incorrect date range");
+            }
+            return visitRepository.findFreeVisitsByDate(startDate, endDate);
+        } catch (Exception e) {
+            System.err.println("Error retrieving free visits by date range:");
+            throw e;
+        }
+    }
+
+    public List<Visit> getFreeVisitsByDateAndService(LocalDate startDate, LocalDate endDate, int serviceId) {
+        try {
+            if(startDate == null || endDate == null || serviceId <= 0) {
+                throw new IllegalArgumentException("VisitService: incorrect data");
+            }
+            return visitRepository.findFreeVisitsByDateAndService(startDate, endDate, serviceId);
+        } catch (Exception e) {
+            System.err.println("Error retrieving free visits by date range and service:");
+            throw e;
+        }
+    }
 }

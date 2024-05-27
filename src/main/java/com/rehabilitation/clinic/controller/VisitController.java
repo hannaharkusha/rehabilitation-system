@@ -71,10 +71,26 @@ public class VisitController {
     //umowienie wizyty
     @GetMapping("/booking-visit")
     public void bookVisitForClient(int clientId, int visitId){visitService.bookVisitForClient(clientId,visitId);}
+
     //odwołanie wizyty
     @GetMapping("/cancel-visit")
     public void cancelVisit(int visitId){visitService.cancelVisit(visitId);}
 
     //wizyty na wybrany dzien dla employee status booked
+    @GetMapping("/booked-visits")
+    public List<Visit> getBookedVisitsByEmployeeAndDate(int employeeId, LocalDate date) {
+        return visitService.getBookedVisitsByEmployeeAndDate(employeeId, date);
+    }
+
     //wolne wizyty z danego przedzialu czasowego
+    @GetMapping("/by-date")
+    public List<Visit> getFreeVisitsByDate(LocalDate startDate, LocalDate endDate) {
+        return visitService.getFreeVisitsByDate(startDate, endDate);
+    }
+
+    //wolne wizyty z danego przedzialu czasowego z wybranym zabiegiem
+    @GetMapping("/by-service")
+    public List<Visit> getFreeVisitsByDateAndService(LocalDate startDate, LocalDate endDate, int serviceId) {
+        return visitService.getFreeVisitsByDateAndService(startDate, endDate, serviceId);
+    }
 }
