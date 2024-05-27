@@ -35,12 +35,12 @@ public class ServiceService {
         }
     }
 
-    public void addService(String name, float price, int duration) {
+    public void addService(String name, float price) {
         try {
-            if(name == null || price < 0.0 || duration == 0) {
+            if(name == null || price < 0.0 ) {
                 throw new IllegalArgumentException("ServiceService: incorrect data");
             }
-            Service service = new Service(name, price, duration);
+            Service service = new Service(name, price);
             serviceRepository.save(service);
         } catch (Exception e) {
             System.err.println("Error adding service: " + e.getMessage());
@@ -69,7 +69,6 @@ public class ServiceService {
                 Service existingService = existingServiceOptional.get();
                 existingService.setName(name);
                 existingService.setPrice(price);
-                existingService.setDuration(duration);
 
                 serviceRepository.save(existingService);
             } else {
@@ -130,7 +129,6 @@ public class ServiceService {
             Optional<Service> existingServiceOptional = serviceRepository.findById(serviceId);
             if (existingServiceOptional.isPresent()) {
                 Service existingService = existingServiceOptional.get();
-                existingService.setDuration(duration);
 
                 serviceRepository.save(existingService);
             } else {

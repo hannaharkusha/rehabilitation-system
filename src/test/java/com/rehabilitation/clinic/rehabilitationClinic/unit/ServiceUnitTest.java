@@ -28,8 +28,8 @@ public class ServiceUnitTest {
     @Test
     public void testGetAllServices() {
         List<Service> services = Arrays.asList(
-                new Service("name1", 350, 30),
-                new Service("name2", 1200, 90)
+                new Service("name1", 350),
+                new Service("name2", 1200)
         );
 
         when(serviceRepository.findAll()).thenReturn(services);
@@ -39,7 +39,7 @@ public class ServiceUnitTest {
 
     @Test
     public void testGetServiceById() {
-        Service service = new Service("name", 100, 10);
+        Service service = new Service("name", 100);
         service.setServiceId(1);
 
         when(serviceRepository.findById(1)).thenReturn(Optional.of(service));
@@ -50,11 +50,11 @@ public class ServiceUnitTest {
 
     @Test
     public void testAddService() {
-        Service service = new Service("name", 100, 10);
+        Service service = new Service("name", 100);
         service.setServiceId(1);
 
         when(serviceRepository.save(any(Service.class))).thenReturn(service);
-        serviceService.addService("name", 100, 10);
+        serviceService.addService("name", 100);
         verify(serviceRepository, times(1)).save(any(Service.class));
     }
 

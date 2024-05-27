@@ -31,8 +31,8 @@ public class ServiceController {
     }
 
     @GetMapping("/add")
-    public void addService(String name, float price, int duration) {
-        serviceService.addService(name, price, duration);
+    public void addService(String name, float price) {
+        serviceService.addService(name, price);
     }
 
     @GetMapping("/delete")

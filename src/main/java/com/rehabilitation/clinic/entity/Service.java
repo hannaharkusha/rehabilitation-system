@@ -11,8 +11,7 @@ public class Service {
     private String name;
     @Column(nullable = false)
     private float price;
-    @Column(nullable = false)
-    private int duration;
+
 
     public String getName() {
         return name;
@@ -30,14 +29,6 @@ public class Service {
         this.price = price;
     }
 
-    public int getDuration() {
-        return duration;
-    }
-
-    public void setDuration(int duration) {
-        this.duration = duration;
-    }
-
     public int getServiceId() {
         return serviceId;
     }
@@ -48,9 +39,8 @@ public class Service {
 
     public Service() {}
 
-    public Service(String name, float price, int duration) {
+    public Service(String name, float price) {
         this.name = name;
         this.price = price;
-        this.duration = duration;
     }
 }
