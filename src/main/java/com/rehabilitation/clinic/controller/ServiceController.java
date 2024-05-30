@@ -41,7 +41,6 @@ public class ServiceController {
     }
 
 
-    //modyfikacji zabiegu
     @GetMapping("/edit")
     public void editService(int serviceId, String name, float price) {
         serviceService.editService(serviceId, name, price);

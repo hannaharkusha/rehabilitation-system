@@ -85,4 +85,27 @@ public class EmployeeService {
         }
         return Optional.empty();
     }
+
+    public void editEmployee(int id,String name, String surname, String position, String email) {
+        try {
+            if(name == null || surname == null || position == null || email==null || getEmployeeById(id).isEmpty()) {
+                throw new IllegalArgumentException("EmployeeService: incorrect data");
+            }
+            Optional<Employee> existingEmployeeOptional = getEmployeeById(id);
+            if (existingEmployeeOptional.isPresent()) {
+                Employee existingEmployee = existingEmployeeOptional.get();
+                existingEmployee.setName(name);
+                existingEmployee.setSurname(surname);
+                existingEmployee.setEmail(email);
+                existingEmployee.setPosition(position);
+
+                employeeRepository.save(existingEmployee);
+            } else {
+                throw new IllegalArgumentException("EmployeeService: Service not found with id " + id);
+            }
+        } catch (Exception e) {
+            System.err.println("Error editing employee data: " + e.getMessage());
+            throw e;
+        }
+    }
 }

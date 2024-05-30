@@ -44,6 +44,11 @@ public class EmployeeController {
         employeeService.addEmployee(name, surname, password, position, email);
     }
 
+    @GetMapping("/edit")
+    public void editEmployee(int id, String name, String surname,String position, String email) {
+        employeeService.editEmployee(id, name, surname, position, email);
+    }
+
     @GetMapping("/delete")
     public void deleteEmployeeById(int id) {
         employeeService.deleteEmployeeById(id);
