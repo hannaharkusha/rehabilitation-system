@@ -65,6 +65,19 @@ public class ClientService {
         }
     }
 
+    public void addClientWithoutAccount(String name, String surname, String pesel, String phoneNr) {
+        try {
+            if(name == null || surname == null) {
+                throw new IllegalArgumentException("ClientService: incorrect data");
+            }
+            Client client = new Client(name, surname, pesel, phoneNr);
+            clientRepository.save(client);
+        } catch (Exception e) {
+            System.err.println("Error adding client: " + e.getMessage());
+            throw e;
+        }
+    }
+
     public void deleteClientById(int id) {
         try {
             if(id <= 0) {

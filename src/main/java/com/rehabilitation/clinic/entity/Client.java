@@ -21,6 +21,12 @@ public class Client extends ClinicUser
         this.phoneNr = phoneNr;
     }
 
+    public Client(String name, String surname, String pesel, String phoneNr) {
+        super(name, surname);
+        this.pesel = pesel;
+        this.phoneNr = phoneNr;
+    }
+
     public String getPesel()
     {
         return pesel;

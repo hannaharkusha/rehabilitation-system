@@ -32,6 +32,12 @@ public abstract class ClinicUser
         this.email = email;
     }
 
+    public ClinicUser(String name, String surname)
+    {
+        this.name = name;
+        this.surname = surname;
+    }
+
     public String getEmail() {
         return email;
     }

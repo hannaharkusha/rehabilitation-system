@@ -68,6 +68,11 @@ public class ClientController {
         clientService.addClient(name, surname, password, email,pesel, phoneNr);
     }
 
+    @GetMapping("/add-no-account")
+    public void addClientWithoutAccount(String name, String surname, String pesel, String phoneNr) {
+        clientService.addClientWithoutAccount(name, surname, pesel, phoneNr);
+    }
+
     @GetMapping("/delete")
     public void deleteClientById(int id) {
         clientService.deleteClientById(id);
