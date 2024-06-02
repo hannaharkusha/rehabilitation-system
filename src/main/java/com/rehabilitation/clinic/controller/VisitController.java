@@ -4,10 +4,15 @@ import com.rehabilitation.clinic.entity.Client;
 import com.rehabilitation.clinic.entity.Employee;
 import com.rehabilitation.clinic.entity.Service;
 import com.rehabilitation.clinic.entity.Visit;
+import com.rehabilitation.clinic.repository.ClientRepository;
+import com.rehabilitation.clinic.repository.ServiceRepository;
 import com.rehabilitation.clinic.service.VisitService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDate;
@@ -69,8 +74,28 @@ public class VisitController {
     //zmianaterminu wizyty - funkcja odłowania wizyty i umówienia wizyty
 
     //umowienie wizyty
-    @GetMapping("/booking-visit")
-    public void bookVisitForClient(int clientId, int visitId){visitService.bookVisitForClient(clientId,visitId);}
+
+    @Autowired
+    private ClientRepository clientRepository;
+
+    @Autowired
+    private ServiceRepository serviceRepository;
+    @GetMapping("/book")
+    public ResponseEntity<?> bookVisit(@RequestParam int clientId, @RequestParam int serviceId, @RequestParam int visitId) {
+        try {
+            Optional<Client> clientOptional = clientRepository.findById(clientId);
+            Optional<Service> serviceOptional = serviceRepository.findById(serviceId);
+
+            if (clientOptional.isPresent() && serviceOptional.isPresent()) {
+                visitService.bookVisit(clientOptional.get(), serviceOptional.get(), visitId);
+                return ResponseEntity.ok().build();
+            } else {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Client or Service not found");
+            }
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+        }
+    }
 
     //odwołanie wizyty
     @GetMapping("/cancel-visit")

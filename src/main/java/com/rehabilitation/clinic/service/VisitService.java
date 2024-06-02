@@ -1,9 +1,12 @@
 package com.rehabilitation.clinic.service;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.rehabilitation.clinic.entity.Client;
 import com.rehabilitation.clinic.entity.Employee;
 import com.rehabilitation.clinic.entity.Service;
 import com.rehabilitation.clinic.entity.Visit;
+import com.rehabilitation.clinic.repository.ClientRepository;
+import com.rehabilitation.clinic.repository.ServiceRepository;
 import com.rehabilitation.clinic.repository.VisitRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -77,9 +80,35 @@ public class VisitService {
             throw e;
         }
     }
-    public void bookVisitForClient(int clientId, int visitId)
-    {
-        visitRepository.updateVisitStatusAndClientId(visitId, clientId);
+
+    @Autowired
+    private ClientRepository clientRepository; // Assuming you have a ClientRepository
+
+    public void bookVisit(Client client, Service service, int id) {
+        try {
+            if (id <= 0) {
+                throw new IllegalArgumentException("VisitService: incorrect id");
+            }
+
+            Optional<Visit> existingVisitOptional = visitRepository.findById(id);
+            if (existingVisitOptional.isPresent()) {
+                Visit existingVisit = existingVisitOptional.get();
+
+                clientRepository.save(client);
+
+                existingVisit.setClient(client);
+                existingVisit.setService(service);
+                existingVisit.setStatus("BOOKED");
+
+                // Save the updated visit
+                visitRepository.save(existingVisit);
+            } else {
+                throw new IllegalArgumentException("VisitService: Visit not found with id " + id);
+            }
+        } catch (Exception e) {
+            System.err.println("Error booking visit: " + e.getMessage());
+            throw e;
+        }
     }
 
     @Transactional

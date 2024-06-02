@@ -50,6 +50,18 @@ public class ClientService {
         }
     }
 
+    public Optional<Client> getClientByPesel(String pesel) {
+        try {
+            if (pesel == null) {
+                throw new IllegalArgumentException("ClientService: incorrect email");
+            }
+            return clientRepository.findByPesel(pesel);
+        } catch (Exception e) {
+            System.err.println("Error retrieving client by email: " + e.getMessage());
+            throw e;
+        }
+    }
+
     public void addClient(String name, String surname, String password, String email, String pesel, String phoneNr) {
         try {
             if(name == null || surname == null || password == null || email == null) {

@@ -18,7 +18,7 @@ public abstract class ClinicUser
     @Column(length = 50)
     private String email;
 
-    @Column(length = 100, nullable = false)
+    @Column(length = 100)
     private String password;
 
 

@@ -28,6 +28,11 @@ public class ClientController {
         return clientService.getClientById(id);
     }
 
+    @GetMapping("/pesel")
+    public Optional<Client> getClientById(String pesel) {
+        return clientService.getClientByPesel(pesel);
+    }
+
     @GetMapping("/email")
     public Optional<Client> getClientByEmail(String email) {
         return clientService.getClientByEmail(email);
