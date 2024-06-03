@@ -119,6 +119,7 @@ public class VisitService {
         optionalVisit.ifPresent(visit -> {
             visit.setStatus("FREE");
             visit.setClient(null); // Set client to null
+            visit.setService(null);
             visitRepository.save(visit);
         });
     }

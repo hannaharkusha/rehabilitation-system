@@ -74,7 +74,85 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>3.2.0</version>
+				<executions>
+					<execution>
+						<id>copy-resources</id>
+						<phase>validate</phase>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${project.build.outputDirectory}/static</outputDirectory>
+							<resources>
+								<resource>
+									<directory>../client-app/build</directory>
+									<filtering>false</filtering>
+								</resource>
+							</resources>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
 	</build>
+<!--	<profiles>-->
+<!--		<profile>-->
+<!--			<id>build-frontend</id>-->
+<!--			<build>-->
+<!--				<plugins>-->
+<!--					&lt;!&ndash; Plugin to build React app &ndash;&gt;-->
+<!--					<plugin>-->
+<!--						<groupId>org.codehaus.mojo</groupId>-->
+<!--						<artifactId>exec-maven-plugin</artifactId>-->
+<!--						<version>3.0.0</version>-->
+<!--						<executions>-->
+<!--							<execution>-->
+<!--								<id>npm-build</id>-->
+<!--								<goals>-->
+<!--									<goal>exec</goal>-->
+<!--								</goals>-->
+<!--								<configuration>-->
+<!--									<executable>npm</executable>-->
+<!--									<arguments>-->
+<!--										<argument>run</argument>-->
+<!--										<argument>build</argument>-->
+<!--									</arguments>-->
+<!--									<workingDirectory>../client-app</workingDirectory> &lt;!&ndash; Adjust this path &ndash;&gt;-->
+<!--								</configuration>-->
+<!--							</execution>-->
+<!--						</executions>-->
+<!--					</plugin>-->
+<!--					&lt;!&ndash; Plugin to copy React build files &ndash;&gt;-->
+<!--					<plugin>-->
+<!--						<groupId>org.apache.maven.plugins</groupId>-->
+<!--						<artifactId>maven-resources-plugin</artifactId>-->
+<!--						<version>3.2.0</version>-->
+<!--						<executions>-->
+<!--							<execution>-->
+<!--								<id>copy-resources</id>-->
+<!--								<phase>validate</phase>-->
+<!--								<goals>-->
+<!--									<goal>copy-resources</goal>-->
+<!--								</goals>-->
+<!--								<configuration>-->
+<!--									<outputDirectory>${project.build.outputDirectory}/static</outputDirectory>-->
+<!--									<resources>-->
+<!--										<resource>-->
+<!--											<directory>../client-app/build</directory> &lt;!&ndash; Adjust this path &ndash;&gt;-->
+<!--											<filtering>false</filtering>-->
+<!--										</resource>-->
+<!--									</resources>-->
+<!--								</configuration>-->
+<!--							</execution>-->
+<!--						</executions>-->
+<!--					</plugin>-->
+<!--				</plugins>-->
+<!--			</build>-->
+<!--		</profile>-->
+<!--	</profiles>-->
 
 </project>
