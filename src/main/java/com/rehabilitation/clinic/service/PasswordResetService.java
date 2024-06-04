@@ -37,16 +37,13 @@ public class PasswordResetService {
     }
 
     public void initiatePasswordReset(String email) {
-        // Generate verification code
         String verificationCode = generateVerificationCode();
 
-        // Store verification code in database
         PasswordResetToken token = new PasswordResetToken();
         token.setEmail(email);
         token.setVerificationCode(verificationCode);
         passwordResetTokenRepository.save(token);
 
-        // Send email with verification code (implementation not shown here)
         sendPasswordResetEmail(email, verificationCode);
     }
 
@@ -56,46 +53,34 @@ public class PasswordResetService {
 
     private void sendPasswordResetEmail(String email, String verificationCode) {
         System.out.println("code sending activated");
-        // Sender's email address
+
         final String senderEmail = "gabinetrehabinfo@gmail.com";
-        // Sender's email password
         final String password = "fodu gdje zisb inak";
 
-        // SMTP server details
         String host = "smtp.gmail.com";
         int port = 587;
 
-        // Create properties for the SMTP session
         Properties properties = new Properties();
         properties.put("mail.smtp.auth", "true");
         properties.put("mail.smtp.starttls.enable", "true");
         properties.put("mail.smtp.host", host);
         properties.put("mail.smtp.port", port);
 
-        // Create a Session object with the properties and authenticator
         Session session = Session.getInstance(properties, new Authenticator() {
             @Override
             protected PasswordAuthentication getPasswordAuthentication() {
                 return new PasswordAuthentication(senderEmail, password);
             }
         });
-
-        // Used to debug SMTP issues
         session.setDebug(true);
 
         try {
-            // Create a MimeMessage object
             Message message = new MimeMessage(session);
-            // Set sender email address
             message.setFrom(new InternetAddress(senderEmail));
-            // Set recipient email address
             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(email));
-            // Set email subject
             message.setSubject("Password Reset Verification Code");
-            // Set email content
             message.setText("Your password reset verification code is: " + verificationCode);
 
-            // Send the email
             Transport.send(message);
 
             System.out.println("Password reset verification code sent successfully to " + email);
@@ -103,6 +88,4 @@ public class PasswordResetService {
             System.out.println("Error occurred while sending email: " + e.getMessage());
         }
     }
-
-
 }

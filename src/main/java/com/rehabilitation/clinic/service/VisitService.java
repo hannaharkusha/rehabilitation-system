@@ -1,12 +1,10 @@
 package com.rehabilitation.clinic.service;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.rehabilitation.clinic.entity.Client;
 import com.rehabilitation.clinic.entity.Employee;
 import com.rehabilitation.clinic.entity.Service;
 import com.rehabilitation.clinic.entity.Visit;
 import com.rehabilitation.clinic.repository.ClientRepository;
-import com.rehabilitation.clinic.repository.ServiceRepository;
 import com.rehabilitation.clinic.repository.VisitRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -82,7 +80,7 @@ public class VisitService {
     }
 
     @Autowired
-    private ClientRepository clientRepository; // Assuming you have a ClientRepository
+    private ClientRepository clientRepository;
 
     public void bookVisit(Client client, Service service, int id) {
         try {
@@ -100,7 +98,6 @@ public class VisitService {
                 existingVisit.setService(service);
                 existingVisit.setStatus("BOOKED");
 
-                // Save the updated visit
                 visitRepository.save(existingVisit);
             } else {
                 throw new IllegalArgumentException("VisitService: Visit not found with id " + id);
@@ -118,7 +115,7 @@ public class VisitService {
 
         optionalVisit.ifPresent(visit -> {
             visit.setStatus("FREE");
-            visit.setClient(null); // Set client to null
+            visit.setClient(null);
             visit.setService(null);
             visitRepository.save(visit);
         });
