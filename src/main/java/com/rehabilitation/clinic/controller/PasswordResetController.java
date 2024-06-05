@@ -14,6 +14,7 @@ public class PasswordResetController {
     @Autowired
     private PasswordResetService passwordResetService;
 
+
     @GetMapping("/password")
     public void addToken(String email) {
         passwordResetService.initiatePasswordReset(email);
@@ -22,5 +23,10 @@ public class PasswordResetController {
     @GetMapping("/code")
     public Optional<PasswordResetToken> getCode(String email) {
         return passwordResetService.getCodeByEmail(email);
+    }
+
+    @GetMapping("/form")
+    public void getForm(String email, String imie, String phone, String text){
+        passwordResetService.sendEmail(email, imie, phone, text);
     }
 }
