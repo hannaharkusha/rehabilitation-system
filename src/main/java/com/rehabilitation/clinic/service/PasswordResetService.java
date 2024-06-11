@@ -55,7 +55,7 @@ public class PasswordResetService {
         System.out.println("code sending activated");
 
         final String senderEmail = "gabinetrehabinfo@gmail.com";
-        final String password = "fodu gdje zisb inak";
+        final String password = "password";
 
         String host = "smtp.gmail.com";
         int port = 587;
@@ -95,7 +95,7 @@ public class PasswordResetService {
         // Sender's email address
         final String senderEmail = "gabinetrehabinfo@gmail.com";
         // Sender's email password
-        final String password = "fodu gdje zisb inak";
+        final String password = "password";
 
         // SMTP server details
         String host = "smtp.gmail.com";
